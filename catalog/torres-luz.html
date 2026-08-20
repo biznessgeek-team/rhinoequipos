@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torres de Luz | RHINO EQUIPMENT COLOMBIA</title>
+    <meta name="description" content="Catálogo de Torres Luz Rhino: modelos, especificaciones técnicas y cotización.">
+    <link rel="icon" type="image/png" href="../favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --industrial-orange: #FF6600;
+            --dark-charcoal: #121212;
+            --light-gray: #F4F4F4;
+            --text-muted: #B0B0B0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark-charcoal); background: #fff; overflow-x: hidden; }
+        h1, h2, h3, h4, h5 { font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+        /* Video Intro Overlay */
+#video-intro-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('intro-bg.jpg') no-repeat center center/cover;
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+}
+        #video-intro-container.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        @keyframes logoPulse {
+            0%      { opacity: 0; }
+            21.43%  { opacity: 0.4; }   /* 1.5s: fade in completo */
+            50%     { opacity: 0.4; }   /* 3.5s: termina el standby de 2s */
+            71.43%  { opacity: 0; }     /* 5s: fade out completo */
+            100%    { opacity: 0; }     /* 7s: espera 2s invisible */
+        }
+
+        /* Mismo timing que el logo, pero opacidad máxima 1 para los botones */
+        @keyframes buttonsPulse {
+            0%      { opacity: 0; }
+            21.43%  { opacity: 1; }
+            50%     { opacity: 1; }
+            71.43%  { opacity: 0.1; }
+            100%    { opacity: 0.1; }
+        }
+
+        /* Marca de Agua (Watermark) - Animación fade loop */
+        #video-intro-container::before {
+            content: '';
+            position: absolute;
+            top: calc(50% - 100px); /* Subido 100px hacia arriba */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 49vw;
+            height: 49vh;
+            background-image: url('rhino-logo-bg.png'); /* Tu nombre original */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: logoPulse 7s ease-in-out infinite;
+        }
+
+        #intro-video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: none; 
+            background: #000; 
+            position: absolute; /* CAMBIO CLAVE: de relative a absolute */
+            top: 0; 
+            left: 0;
+            z-index: 2; 
+        }
+
+        /* Zona invisible inferior para mostrar controles */
+        #hover-zone {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 150px;
+            z-index: 3;
+            display: none; 
+        }
+
+        /* Controles personalizados (Play/Pause/Stop) */
+        #custom-video-controls {
+            position: absolute;
+            bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: none; 
+            z-index: 4;
+            gap: 20px;
+            align-items: center;
+        }
+        #custom-video-controls button {
+            background: none; border: none; color: #fff;
+            font-size: 18px; cursor: pointer; transition: color 0.3s;
+        }
+        #custom-video-controls button:hover { color: var(--industrial-orange); }
+
+        /* Contenedor de los botones - Abajo, separados y a los lados */
+        .intro-buttons-wrapper {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 3;
+        }
+
+        .start-btn {
+            background: var(--industrial-orange); color: #fff; border: none; padding: 17px 35px;
+            font-size: 17px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; border-radius: 8px; box-shadow: 0 10px 30px rgba(255,102,0,0.4);
+            transition: transform 0.3s; display: flex; align-items: center; gap: 10px;
+        }
+        .start-btn:hover { transform: scale(1.05); background: #e65c00; }
+
+        /* Botón INGRESAR - mismo tamaño que VER INTRO */
+        .skip-btn {
+            background: #000;
+            color: #fff;
+            border: 2px solid var(--industrial-orange);
+            padding: 15px 35px;
+            font-size: 17px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skip-btn:hover { 
+            background: var(--industrial-orange); 
+            color: #fff; 
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Oswald'; font-size: 24px; font-weight: 700; color: var(--dark-charcoal); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 36px; width: auto; display: block; }
+        nav ul { display: flex; gap: 30px; list-style: none; }
+        nav a { color: var(--dark-charcoal); text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.3s; }
+        nav a:hover { color: var(--industrial-orange); }
+        .btn-cta { background: var(--industrial-orange); color: #fff !important; padding: 10px 20px; border-radius: 4px; text-transform: uppercase; }
+        .btn-cta:hover { background: var(--dark-charcoal); color: var(--industrial-orange) !important; }
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-charcoal); }
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            nav ul { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #fff; flex-direction: column; justify-content: center; gap: 30px; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s; z-index: 1001; }
+            nav ul.active { right: 0; }
+        }
+
+        /* Hero */
+        .hero { position: relative; height: 90vh; min-height: 600px; display: flex; align-items: center; overflow: hidden; color: #fff; padding: 0 40px; }
+        .hero-slides { position: absolute; inset: 0; z-index: 0; }
+        .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center center; background-repeat: no-repeat; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .hero-slide.active { opacity: 1; }
+        .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)); }
+        .hero-content { z-index: 2; max-width: 700px; }
+        .hero-tag { background: var(--industrial-orange); color: #fff; padding: 8px 15px; font-size: 13px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 20px; letter-spacing: 1px; }
+        .hero h1 { font-size: 56px; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 18px; color: #ddd; margin-bottom: 35px; line-height: 1.6; max-width: 600px; }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 15px 25px; font-family: 'Oswald'; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--industrial-orange); color: #fff; border: 2px solid var(--industrial-orange); }
+        .btn-primary:hover { background: transparent; color: #fff; transform: translateY(-3px); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: #fff; color: var(--dark-charcoal); transform: translateY(-3px); }
+        .btn-play { background: rgba(255, 255, 255, 0.1); color: #fff; border: 2px solid rgba(255, 255, 255, 0.5); backdrop-filter: blur(5px); }
+        .btn-play:hover { background: #fff; color: var(--dark-charcoal); border-color: #fff; transform: translateY(-3px); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 36px; color: var(--dark-charcoal); }
+        .section-header p { color: #666; max-width: 600px; margin: 15px auto 0; }
+        .divider { width: 80px; height: 4px; background: var(--industrial-orange); margin: 20px auto 0; }
+
+        /* Maquinaria Grid */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 40px; }
+        .card { background: #fff; border: 1px solid #eee; overflow: hidden; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-img { height: 320px; background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #f5f5f5; }
+        .card-info { padding: 25px; }
+        .card-info h3 { font-size: 22px; margin-bottom: 10px; }
+        .price { color: var(--industrial-orange); font-weight: 700; font-size: 18px; display: block; margin-bottom: 15px; }
+        .specs { list-style: none; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .specs li { font-size: 14px; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+        .specs i { color: var(--industrial-orange); }
+        .btn-card { display: block; text-align: center; background: var(--dark-charcoal); color: #fff; padding: 12px; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; transition: 0.3s; }
+        .btn-card:hover { background: var(--industrial-orange); }
+
+        /* Carruseles de maquinaria */
+        .carousel { position: relative; margin-bottom: 40px; }
+        .carousel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .carousel-title { font-family: 'Oswald'; font-size: 22px; text-transform: uppercase; color: var(--dark-charcoal); letter-spacing: 1px; }
+        .carousel-nav { display: flex; gap: 10px; }
+        .carousel-btn { width: 44px; height: 44px; border: 2px solid var(--dark-charcoal); background: #fff; color: var(--dark-charcoal); font-size: 18px; cursor: pointer; border-radius: 50%; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .carousel-btn:hover { background: var(--industrial-orange); border-color: var(--industrial-orange); color: #fff; }
+        .carousel-track { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 15px; scrollbar-width: thin; }
+        .carousel-track::-webkit-scrollbar { height: 6px; }
+        .carousel-track::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
+        .carousel .card { flex: 0 0 320px; scroll-snap-align: start; }
+
+        .bg-gray { background: var(--light-gray); }
+        .pkg-card { border-top: 5px solid var(--dark-charcoal); padding: 30px; background: #fff; transition: 0.3s; }
+        .pkg-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+        .pkg-card.featured { border-top: 5px solid var(--industrial-orange); transform: scale(1.02); }
+        .pkg-price { font-size: 36px; font-weight: 700; color: var(--dark-charcoal); margin-bottom: 15px; font-family: 'Oswald'; }
+        .pkg-price span { font-size: 14px; color: #999; text-decoration: line-through; display: block; }
+        .pkg-includes { list-style: none; margin-bottom: 20px; }
+        .pkg-includes li { margin-bottom: 10px; font-size: 14px; display: flex; gap: 10px; }
+        .pkg-includes i { color: var(--industrial-orange); }
+
+        .bg-dark { background: var(--dark-charcoal); color: #fff; }
+        .bg-dark .section-header h2 { color: #fff; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; padding: 0 40px; }
+        .why-icon { font-size: 36px; color: var(--industrial-orange); margin-bottom: 15px; }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; padding: 0 40px; }
+        .contact-form { background: #fff; padding: 30px; color: var(--dark-charcoal); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; font-family: 'Inter'; }
+        
+        footer { background: #0A0A0A; color: #fff; padding: 40px; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .pkg-card.featured { transform: none; }
+        }
+    
+.page-hero { position: relative; height: 45vh; min-height: 320px; display: flex; align-items: center; overflow: hidden; color: #fff; padding: 0 40px; background: #222; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background-image: url('../catalog-img/torres-luz.jpg'); background-size: cover; background-position: center; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.35)); }
+.page-hero h1 { position: relative; z-index: 2; font-size: 46px; text-transform: uppercase; }
+.back-link { position: relative; z-index: 2; display: inline-block; margin-bottom: 15px; color: #fff; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+.back-link:hover { color: var(--industrial-orange); }
+.grid-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+.prod-desc { font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 15px; min-height: 60px; }
+.card-actions { display: flex; flex-direction: column; gap: 10px; }
+.btn-catalog { display: block; text-align: center; background: #fff; color: var(--dark-charcoal); border: 2px solid var(--dark-charcoal); padding: 10px; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; transition: 0.3s; font-size: 13px; }
+.btn-catalog:hover { background: var(--dark-charcoal); color: #fff; }
+/* Popup catálogo */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 40px 20px; }
+.modal.open { display: flex; align-items: flex-start; justify-content: center; }
+.modal-box { background: #fff; max-width: 850px; width: 100%; border-radius: 8px; overflow: hidden; position: relative; margin: auto; }
+.modal-close { position: absolute; top: 15px; right: 15px; background: var(--industrial-orange); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 5; }
+.modal-img { height: 340px; background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #f5f5f5; }
+.modal-body { padding: 30px 40px 40px; }
+.modal-body h3 { font-size: 28px; margin-bottom: 10px; text-transform: uppercase; }
+.modal-body p { color: #555; line-height: 1.6; margin-bottom: 25px; }
+.specs-table { width: 100%; border-collapse: collapse; }
+.specs-table th { text-align: left; background: var(--dark-charcoal); color: #fff; padding: 10px 15px; font-family: 'Oswald'; font-weight: 500; letter-spacing: 1px; font-size: 13px; text-transform: uppercase; }
+.specs-table td { padding: 9px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+.specs-table tr:nth-child(even) td { background: #fafafa; }
+@media (max-width: 900px) { .page-hero h1 { font-size: 30px; } .modal-img { height: 220px; } .modal-body { padding: 20px; } }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--dark-charcoal); text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; font-family: 'Inter'; box-sizing: border-box; }
+        .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+        .chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .chip span { display: inline-block; padding: 9px 18px; border: 2px solid #ddd; border-radius: 30px; font-size: 13px; font-family: 'Inter'; color: #555; cursor: pointer; transition: 0.25s; user-select: none; }
+        .chip:hover span { border-color: var(--industrial-orange); color: var(--industrial-orange); }
+        .chip input:checked + span { background: var(--industrial-orange); border-color: var(--industrial-orange); color: #fff; font-weight: 600; }
+    </style>
+    <meta property="og:title" content="Torres de Luz | RHINO EQUIPMENT COLOMBIA">
+    <meta property="og:description" content="Catálogo técnico de Torres de Luz | RHINO EQUIPMENT COLOMBIA Rhino Equipment Colombia. Cotiza por WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rhinoequipos.com/catalog-img/torres-luz.jpg">
+    <meta property="og:url" content="https://rhinoequipos.com/catalog/torres-luz.html">
+    <link rel="canonical" href="https://rhinoequipos.com/catalog/torres-luz.html">
+</head>
+<body>
+<header>
+    <a href="../index.html" class="logo"><img src="../rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPMENT</a>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="../index.html#maquinaria">Maquinaria</a></li>
+            <li><a href="../index.html#paquetes">Planes</a></li>
+            <li><a href="../index.html#contacto">Contacto</a></li>
+            <li><a href="../index.html#contacto" class="btn-cta">Solicitar Cotización</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="page-hero">
+    <div class="hero-content" style="max-width:900px">
+        <a href="../index.html#maquinaria" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Maquinaria</a>
+        <h1>Torres de Luz</h1>
+    </div>
+</section>
+
+<section>
+    <div class="section-header">
+        <h2>CATÁLOGO TORRES DE LUZ</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="grid-products">
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/RLT4000M.jpg?v=3');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">RLT4000M </h3>
+                <p class="prod-desc">Extienda sus jornadas de trabajo con iluminación LED duradera. Mejore productividad y seguridad en obra.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(0)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/RLT4000H.jpg?v=3');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">RLT4000H </h3>
+                <p class="prod-desc">Eleve el nivel de su obra con la torre de luz RLT4000H. Tanques de combustible configurables e iluminación potente.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(1)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/RLT4X150.jpg?v=3');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">RLT4X150 Solar</h3>
+                <p class="prod-desc">Energía limpia e iluminación superior. Perfecta para construcción, minería, petróleo, gas y alquiler.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(2)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="catalog-modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <div class="modal-img" id="modal-img"></div>
+        <div class="modal-body">
+            <h3 id="modal-title"></h3>
+            <p id="modal-desc"></p>
+            <table class="specs-table"><thead><tr><th>Especificación</th><th>Valor</th></tr></thead><tbody id="modal-specs"></tbody></table>
+            <a id="modal-pdf" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:25px;background:var(--industrial-orange);color:#fff;padding:14px 28px;border-radius:6px;text-decoration:none;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:14px;transition:0.3s;">
+                <i class="fas fa-file-download"></i> Bajar Catálogo PDF
+            </a>
+        </div>
+    </div>
+</div>
+
+<section id="contacto" class="bg-gray">
+        <div class="section-header">
+            <h2>SOLICITAR INFORMACIÓN</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <p style="font-size: 22px; line-height: 1.6;">Nuestro equipo le contactará pronto para asistirle y preparar pronto una propuesta técnica para sus necesidades específicas.</p>
+                <br>
+                <a href="https://wa.me/573145162548?text=Hola%20Rhino%20Equipment%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20equipos" target="_blank" style="display:inline-flex; align-items:center; gap:12px; background:#25D366; color:#fff; text-decoration:none; padding:16px 30px; border-radius:8px; font-family:'Oswald'; font-size:17px; text-transform:uppercase; letter-spacing:1px; transition:0.3s; box-shadow:0 8px 25px rgba(37,211,102,0.4);" onmouseover="this.style.background='#1fb457'" onmouseout="this.style.background='#25D366'">
+                    <i class="fab fa-whatsapp" style="font-size:26px;"></i> Contáctenos por WhatsApp
+                </a>
+                <br><br>
+                <p style="color:#888; font-size:13px;"><i class="fas fa-lock" style="color:#FF6600;"></i> Sus datos serán tratados conforme a la Ley 1581 de 2012 (Habeas Data) y nuestras políticas de privacidad.</p>
+            </div>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/santiagoburaye@rhinoequipment.us" method="POST">
+                    <input type="hidden" name="_subject" value="Nueva solicitud de información - Rhino Colombia">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="../gracias.html">
+                    <input type="hidden" name="_autoresponse" value="Gracias por contactar a Rhino Equipment Colombia. Un asesor comercial le respondera en menos de 24 horas habiles.">
+                    <div class="form-group"><label>Nombre</label><input type="text" name="Nombre" required></div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;"><label>Organización</label><input type="text" name="Organización" required></div>
+                        <div class="form-group" style="flex:1;"><label>Cargo (opcional)</label><input type="text" name="Cargo" placeholder="Ej: Gerente de Obra"></div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;">
+                            <label>Tipo de Organización</label>
+                            <select name="Tipo de Organización" required>
+                                <option value="">Seleccione...</option>
+                                <option>Empresa / Contratista</option>
+                                <option>Municipio Pequeño</option>
+                                <option>Ciudad Intermedia</option>
+                                <option>Ciudad Grande</option>
+                                <option>Gobernación / Departamento</option>
+                                <option>Entidad Nacional / Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex:1;"><label>Correo Electrónico</label><input type="email" name="Correo Electrónico" required></div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;"><label>WhatsApp / Teléfono</label><input type="tel" name="WhatsApp Teléfono" placeholder="+57 300 000 0000" required></div>
+                        <div class="form-group" style="flex:1;"><label>Ciudad / Departamento</label><input type="text" name="Ciudad Departamento" placeholder="Ej: Medellín, Antioquia"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Qué necesita? <span style="font-weight:400;color:#999;text-transform:none;">(seleccione una o varias)</span></label>
+                        <div class="chips">
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Compra de equipo nuevo"><span>Compra de equipo nuevo</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Alquiler"><span>Alquiler</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Financiación"><span>Financiación</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Repuestos"><span>Repuestos</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Servicio y mantenimiento"><span>Servicio y mantenimiento</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Familias de Maquinaria de Interés <span style="font-weight:400;color:#999;text-transform:none;">(seleccione una o varias)</span></label>
+                        <div class="chips">
+                            <label class="chip"><input type="checkbox" name="Interés" value="Demolición"><span>Demolición</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Construcción"><span>Construcción</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Vías y Pavimentación"><span>Vías y Pavimentación</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Movimiento de Tierra"><span>Movimiento de Tierra</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Minería Artesanal"><span>Minería Artesanal</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Minería Industrial"><span>Minería Industrial</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Agro"><span>Agro</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Energía y Torres de Luz"><span>Energía y Torres de Luz</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Grúas e Izaje"><span>Grúas e Izaje</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Accesorios"><span>Accesorios</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Otro"><span>Otro</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Mensaje</label><textarea rows="3" name="Mensaje"></textarea></div>
+                    <div class="form-group" style="display:flex; gap:12px; align-items:flex-start; margin-bottom:20px;">
+                        <input type="checkbox" id="habeas-consent" name="Autorización Habeas Data" value="Acepto" required style="width:18px; height:18px; margin-top:3px; flex-shrink:0;">
+                        <label for="habeas-consent" style="font-size:12px; font-weight:400; text-transform:none; letter-spacing:0; line-height:1.5; color:#555; cursor:pointer;">
+                            Autorizo de manera expresa e inequívoca a <strong>Rhino Equipment Colombia</strong> a tratar mis datos personales (nombre, correo y teléfono) con la finalidad de ser contactado por un representante comercial, conforme a la Ley 1581 de 2012 (Habeas Data), el Decreto 1377 de 2013 y las políticas de tratamiento de datos de la compañía. Conozco y acepto los términos del <a href="../politicas.html" style="color:#FF6600;">Aviso de Privacidad</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar</button>
+                </form>
+            </div>
+        </div>
+    
+    </section>
+
+    <footer style="background:#1a1a1a;color:#fff;padding:40px;text-align:center;">
+    <p style="font-family:'Oswald';font-size:20px;margin-bottom:10px;">RHINO EQUIPMENT COLOMBIA</p>
+    <p style="color:#888;">Maquinaria especializada: Demolición, Construcción, Minería y Agricultura</p>
+        <p style="color:#888;margin-top:10px;font-size:13px;"><a href="../politicas.html" style="color:#FF6600;text-decoration:none;">Políticas y Privacidad</a></p>
+</footer>
+
+<script>
+const CATALOG = [{"title": "RLT4000M ", "desc": "Extienda sus jornadas de trabajo con iluminación LED duradera. Mejore productividad y seguridad en obra.", "img": "../catalog-img/modelos/RLT4000M.jpg?v=3", "specs": [["Modelo de motor", "Z482-E4B-CHN1"], ["Velocidad (rpm)", "3,600"], ["Continuous Power kW (Hp)", "8.1 (10.8)"], ["Número de cilindros", "3"], ["Diesel Engine Type", "4 cycle, in line, watercooled diesel"], ["Fuel Injection", "Direct Injection"], ["Engine Aspiration", "Natural"], ["Brand", "Italy Mecc alte"], ["Model", "S20FS-130"], ["Frequency (Hz)", "60"], ["Countinuous Power kW (kVa)", "6(7.5)"], ["Alternator Type", "Brushless & Single phase"], ["Rating Voltage (V)", "220"], ["Insulation", "H"], ["Length mm (ft)", "2,993 (9.8)"], ["Width mm (ft)", "1,100 (3.6)"], ["Height mm (ft)", "2,495 (8.1)"], ["Mast Heigth(Fully Extended) m (ft)", "7.5 (24.6)"], ["Net Weight kg (lb)", "740 (1,631)"], ["Capacidad del tanque de combustible L (gal)", "100 (26,4)"], ["Fuel Tank Operating Hours", "50 Hours Approximately"], ["Type of Lights", "Metal halide Floodlight"], ["Number & Power of Lights", "4x1000W"], ["Mast Lifting & Extension", "Manual Operation"], ["Mast Rotation", "330 degrees manual Operation"], ["Light angle turning", "Manual Operation"], ["Base Support", "Manual Operation"], ["Acoustic Pressure", "65dB(A) at 7 meters away (23 ft away)"]], "pdf": "rlt4000m-light-tower.pdf"}, {"title": "RLT4000H ", "desc": "Eleve el nivel de su obra con la torre de luz RLT4000H. Tanques de combustible configurables e iluminación potente.", "img": "../catalog-img/modelos/RLT4000H.jpg?v=3", "specs": [["Modelo de motor", "D905"], ["Velocidad (rpm)", "1,800"], ["Continuous Power kW (Hp)", "7.8 (10.5)"], ["Número de cilindros", "3"], ["Diesel Engine Type", "4 cycle, in line, watercooled diesel"], ["Fuel Injection", "Direct Injection"], ["Engine Aspiration", "Natural"], ["Modelo de motor", "403D-11G"], ["Velocidad (rpm)", "1,800"], ["Continuous Power kW (Hp)", "10.3 (13.8)"], ["Número de cilindros", "3"], ["Diesel Engine Type", "4 cycle, in line, watercooled diesel"], ["Fuel Injection", "Direct Injection"], ["Engine Aspiration", "Natural"], ["Modelo de motor", "3TNV76-GGE"], ["Velocidad (rpm)", "1,800"], ["Continuous Power kW (Hp)", "10.7 (14.3)"], ["Número de cilindros", "3"], ["Diesel Engine Type", "4 cycle, in line, watercooled diesel"], ["Fuel Injection", "Direct Injection"], ["Engine Aspiration", "Natural"], ["Brand", "Italy Mecc alte"], ["Model", "LT3N-100/4"], ["Frequency (Hz)", "60"], ["Countinuous Power kW (kVa)", "6(7.5)"], ["Alternator Type", "Brushless & Single phase"], ["Rating Voltage (V)", "230"], ["Insulation", "H"], ["Length mm (ft)", "2,836 (9.3)"], ["Width mm (ft)", "1,350 (4.4)"], ["Height mm (ft)", "2,536 (8.3)"], ["Mast Heigth(Fully Extended) m (ft)", "9 (29.5)"], ["Net Weight kg (lb)", "1,148 (2,531)"], ["Capacidad del tanque de combustible L (gal)", "75 (19.8)"], ["Fuel Tank Operating Hours", "48 Hours Approximately"], ["Type of Lights", "Metal halide Floodlight"], ["Number & Power of Lights", "4x1000W"], ["Mast Lifting & Extension", "Hydraulic Operation"], ["Mast Rotation", "360 degrees manual Operation"], ["Light angle turning", "Electric"], ["Base Support", "Manual Operation"], ["Acoustic Pressure", "65dB(A) at 7 meters away (23 ft away)"]], "pdf": "rlt4000h-light-tower.pdf"}, {"title": "RLT4X150 Solar", "desc": "Energía limpia e iluminación superior. Perfecta para construcción, minería, petróleo, gas y alquiler.", "img": "../catalog-img/modelos/RLT4X150.jpg?v=3", "specs": [["Solar model", "JAM6-72-310/S1"], ["Maximum Power W", "310"], ["Maximum Power Voltage(V)", "37.9"], ["Maximum Power Current(A)", "8.18"], ["Dimension L*W*H mm (in)", "1,996x991x45 (78.6x39x1.8)"], ["Lifting angle", "0-39 degree"], ["Extending type", "sliding"], ["Extending area m2 (ft2)", "5.2 (56)"], ["LED Lamp model", "JR303-150"], ["Input Voltage", "DC24V"], ["LED Power", "4x150W"], ["Light Beam Angle", "120 degree"], ["LED Luminous flux", "1,500 Lm"], ["Correlated Color Temperature", "500K"], ["Protection class", "IP65"], ["Battery Bank model", "DJM12200 (12V 200AH)"], ["Type", "Solar Energy Deposited"], ["Max. Charging Current(A)", "28.5"], ["Quantity(pcs)", "10"], ["Mast Lifting & Extension", "Hydraulic"], ["Length mm (ft)", "4,468 (14.7)"], ["Width mm (ft)", "1,650 (5.4)"], ["Height mm (ft)", "2,360 (7.7)"], ["Mast Heigth(Fully Extended) m (ft)", "9 (29.5)"], ["Net Weight kg (lb)", "1,950 (4,299)"]], "pdf": "rlt4x150s-light-tower.pdf"}];
+
+function openCatalog(i) {
+    const p = CATALOG[i];
+    document.getElementById('modal-img').style.backgroundImage = "url('" + p.img + "')";
+    document.getElementById('modal-title').textContent = p.title;
+    document.getElementById('modal-desc').textContent = p.desc || 'Consulta las especificaciones técnicas completas de este equipo.';
+    const tb = document.getElementById('modal-specs');
+    tb.innerHTML = p.specs.map(s => '<tr><td>' + s[0] + '</td><td>' + s[1] + '</td></tr>').join('') || '<tr><td colspan="2">Especificaciones disponibles a solicitud.</td></tr>';
+    document.getElementById('modal-pdf').href = '../catalog-pdf/' + p.pdf; document.getElementById('modal-pdf').style.display = p.pdf ? 'inline-flex' : 'none'; document.getElementById('catalog-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('catalog-modal').classList.remove('open');
+    document.body.style.overflow = 'auto';
+}
+document.getElementById('catalog-modal').addEventListener('click', e => { if (e.target.id === 'catalog-modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+const mobileBtn = document.getElementById('mobile-menu');
+const navMenu = document.getElementById('nav-menu');
+if (mobileBtn) mobileBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
+</script>
+        <script>
+        // FormSubmit exige URL absoluta en _next: resolverla contra la pagina actual (funciona en cualquier dominio)
+        document.querySelectorAll('form input[name="_next"]').forEach(function(inp){ try { inp.value = new URL(inp.value, window.location.href).href; } catch(e) {} });
+        </script>
+
+<!-- Boton flotante WhatsApp (conversion) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.wa-float { position: fixed; bottom: 22px; right: 22px; z-index: 500; width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37,211,102,.45); transition: transform .2s, box-shadow .2s; }
+.wa-float:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 10px 26px rgba(37,211,102,.55); }
+.wa-float i { font-size: 30px; color: #fff; }
+.wa-float::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid #25D366;
+  animation: waPulse 1.8s ease-out infinite; }
+@keyframes waPulse { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(1.35); opacity: 0; } }
+@media (max-width: 600px) { .wa-float { width: 50px; height: 50px; bottom: 16px; right: 16px; } .wa-float i { font-size: 26px; } }
+</style>
+<a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+# robots.txt - Rhino Equipment Colombia
+User-agent: *
+Allow: /
+
+# Versiones de respaldo y antiguas - no indexar
+Disallow: /index%20copy.html
+Disallow: /index2-old.html
+Disallow: /index%20-%20backup*
+Disallow: /fotos-revision.html
+
+Sitemap: https://rhinoequipos.com/sitemap.xml

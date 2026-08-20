@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excavadoras | RHINO EQUIPMENT COLOMBIA</title>
+    <meta name="description" content="Catálogo de Excavadoras Rhino: modelos, especificaciones técnicas y cotización.">
+    <link rel="icon" type="image/png" href="../favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --industrial-orange: #FF6600;
+            --dark-charcoal: #121212;
+            --light-gray: #F4F4F4;
+            --text-muted: #B0B0B0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark-charcoal); background: #fff; overflow-x: hidden; }
+        h1, h2, h3, h4, h5 { font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+        /* Video Intro Overlay */
+#video-intro-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('intro-bg.jpg') no-repeat center center/cover;
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+}
+        #video-intro-container.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        @keyframes logoPulse {
+            0%      { opacity: 0; }
+            21.43%  { opacity: 0.4; }   /* 1.5s: fade in completo */
+            50%     { opacity: 0.4; }   /* 3.5s: termina el standby de 2s */
+            71.43%  { opacity: 0; }     /* 5s: fade out completo */
+            100%    { opacity: 0; }     /* 7s: espera 2s invisible */
+        }
+
+        /* Mismo timing que el logo, pero opacidad máxima 1 para los botones */
+        @keyframes buttonsPulse {
+            0%      { opacity: 0; }
+            21.43%  { opacity: 1; }
+            50%     { opacity: 1; }
+            71.43%  { opacity: 0.1; }
+            100%    { opacity: 0.1; }
+        }
+
+        /* Marca de Agua (Watermark) - Animación fade loop */
+        #video-intro-container::before {
+            content: '';
+            position: absolute;
+            top: calc(50% - 100px); /* Subido 100px hacia arriba */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 49vw;
+            height: 49vh;
+            background-image: url('rhino-logo-bg.png'); /* Tu nombre original */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: logoPulse 7s ease-in-out infinite;
+        }
+
+        #intro-video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: none; 
+            background: #000; 
+            position: absolute; /* CAMBIO CLAVE: de relative a absolute */
+            top: 0; 
+            left: 0;
+            z-index: 2; 
+        }
+
+        /* Zona invisible inferior para mostrar controles */
+        #hover-zone {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 150px;
+            z-index: 3;
+            display: none; 
+        }
+
+        /* Controles personalizados (Play/Pause/Stop) */
+        #custom-video-controls {
+            position: absolute;
+            bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: none; 
+            z-index: 4;
+            gap: 20px;
+            align-items: center;
+        }
+        #custom-video-controls button {
+            background: none; border: none; color: #fff;
+            font-size: 18px; cursor: pointer; transition: color 0.3s;
+        }
+        #custom-video-controls button:hover { color: var(--industrial-orange); }
+
+        /* Contenedor de los botones - Abajo, separados y a los lados */
+        .intro-buttons-wrapper {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 3;
+        }
+
+        .start-btn {
+            background: var(--industrial-orange); color: #fff; border: none; padding: 17px 35px;
+            font-size: 17px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; border-radius: 8px; box-shadow: 0 10px 30px rgba(255,102,0,0.4);
+            transition: transform 0.3s; display: flex; align-items: center; gap: 10px;
+        }
+        .start-btn:hover { transform: scale(1.05); background: #e65c00; }
+
+        /* Botón INGRESAR - mismo tamaño que VER INTRO */
+        .skip-btn {
+            background: #000;
+            color: #fff;
+            border: 2px solid var(--industrial-orange);
+            padding: 15px 35px;
+            font-size: 17px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skip-btn:hover { 
+            background: var(--industrial-orange); 
+            color: #fff; 
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Oswald'; font-size: 24px; font-weight: 700; color: var(--dark-charcoal); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 36px; width: auto; display: block; }
+        nav ul { display: flex; gap: 30px; list-style: none; }
+        nav a { color: var(--dark-charcoal); text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.3s; }
+        nav a:hover { color: var(--industrial-orange); }
+        .btn-cta { background: var(--industrial-orange); color: #fff !important; padding: 10px 20px; border-radius: 4px; text-transform: uppercase; }
+        .btn-cta:hover { background: var(--dark-charcoal); color: var(--industrial-orange) !important; }
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-charcoal); }
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            nav ul { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: #fff; flex-direction: column; justify-content: center; gap: 30px; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.4s; z-index: 1001; }
+            nav ul.active { right: 0; }
+        }
+
+        /* Hero */
+        .hero { position: relative; height: 90vh; min-height: 600px; display: flex; align-items: center; overflow: hidden; color: #fff; padding: 0 40px; }
+        .hero-slides { position: absolute; inset: 0; z-index: 0; }
+        .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center center; background-repeat: no-repeat; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .hero-slide.active { opacity: 1; }
+        .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)); }
+        .hero-content { z-index: 2; max-width: 700px; }
+        .hero-tag { background: var(--industrial-orange); color: #fff; padding: 8px 15px; font-size: 13px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 20px; letter-spacing: 1px; }
+        .hero h1 { font-size: 56px; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 18px; color: #ddd; margin-bottom: 35px; line-height: 1.6; max-width: 600px; }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 15px 25px; font-family: 'Oswald'; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--industrial-orange); color: #fff; border: 2px solid var(--industrial-orange); }
+        .btn-primary:hover { background: transparent; color: #fff; transform: translateY(-3px); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: #fff; color: var(--dark-charcoal); transform: translateY(-3px); }
+        .btn-play { background: rgba(255, 255, 255, 0.1); color: #fff; border: 2px solid rgba(255, 255, 255, 0.5); backdrop-filter: blur(5px); }
+        .btn-play:hover { background: #fff; color: var(--dark-charcoal); border-color: #fff; transform: translateY(-3px); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 36px; color: var(--dark-charcoal); }
+        .section-header p { color: #666; max-width: 600px; margin: 15px auto 0; }
+        .divider { width: 80px; height: 4px; background: var(--industrial-orange); margin: 20px auto 0; }
+
+        /* Maquinaria Grid */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 40px; }
+        .card { background: #fff; border: 1px solid #eee; overflow: hidden; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-img { height: 320px; background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #f5f5f5; }
+        .card-info { padding: 25px; }
+        .card-info h3 { font-size: 22px; margin-bottom: 10px; }
+        .price { color: var(--industrial-orange); font-weight: 700; font-size: 18px; display: block; margin-bottom: 15px; }
+        .specs { list-style: none; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .specs li { font-size: 14px; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+        .specs i { color: var(--industrial-orange); }
+        .btn-card { display: block; text-align: center; background: var(--dark-charcoal); color: #fff; padding: 12px; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; transition: 0.3s; }
+        .btn-card:hover { background: var(--industrial-orange); }
+
+        /* Carruseles de maquinaria */
+        .carousel { position: relative; margin-bottom: 40px; }
+        .carousel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .carousel-title { font-family: 'Oswald'; font-size: 22px; text-transform: uppercase; color: var(--dark-charcoal); letter-spacing: 1px; }
+        .carousel-nav { display: flex; gap: 10px; }
+        .carousel-btn { width: 44px; height: 44px; border: 2px solid var(--dark-charcoal); background: #fff; color: var(--dark-charcoal); font-size: 18px; cursor: pointer; border-radius: 50%; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .carousel-btn:hover { background: var(--industrial-orange); border-color: var(--industrial-orange); color: #fff; }
+        .carousel-track { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 15px; scrollbar-width: thin; }
+        .carousel-track::-webkit-scrollbar { height: 6px; }
+        .carousel-track::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
+        .carousel .card { flex: 0 0 320px; scroll-snap-align: start; }
+
+        .bg-gray { background: var(--light-gray); }
+        .pkg-card { border-top: 5px solid var(--dark-charcoal); padding: 30px; background: #fff; transition: 0.3s; }
+        .pkg-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+        .pkg-card.featured { border-top: 5px solid var(--industrial-orange); transform: scale(1.02); }
+        .pkg-price { font-size: 36px; font-weight: 700; color: var(--dark-charcoal); margin-bottom: 15px; font-family: 'Oswald'; }
+        .pkg-price span { font-size: 14px; color: #999; text-decoration: line-through; display: block; }
+        .pkg-includes { list-style: none; margin-bottom: 20px; }
+        .pkg-includes li { margin-bottom: 10px; font-size: 14px; display: flex; gap: 10px; }
+        .pkg-includes i { color: var(--industrial-orange); }
+
+        .bg-dark { background: var(--dark-charcoal); color: #fff; }
+        .bg-dark .section-header h2 { color: #fff; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; padding: 0 40px; }
+        .why-icon { font-size: 36px; color: var(--industrial-orange); margin-bottom: 15px; }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; padding: 0 40px; }
+        .contact-form { background: #fff; padding: 30px; color: var(--dark-charcoal); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; font-family: 'Inter'; }
+        
+        footer { background: #0A0A0A; color: #fff; padding: 40px; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .pkg-card.featured { transform: none; }
+        }
+    
+.page-hero { position: relative; height: 45vh; min-height: 320px; display: flex; align-items: center; overflow: hidden; color: #fff; padding: 0 40px; background: #222; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background-image: url('../catalog-img/excavadoras.jpg'); background-size: cover; background-position: center; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.35)); }
+.page-hero h1 { position: relative; z-index: 2; font-size: 46px; text-transform: uppercase; }
+.back-link { position: relative; z-index: 2; display: inline-block; margin-bottom: 15px; color: #fff; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+.back-link:hover { color: var(--industrial-orange); }
+.grid-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+.prod-desc { font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 15px; min-height: 60px; }
+.card-actions { display: flex; flex-direction: column; gap: 10px; }
+.btn-catalog { display: block; text-align: center; background: #fff; color: var(--dark-charcoal); border: 2px solid var(--dark-charcoal); padding: 10px; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; transition: 0.3s; font-size: 13px; }
+.btn-catalog:hover { background: var(--dark-charcoal); color: #fff; }
+/* Popup catálogo */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; padding: 40px 20px; }
+.modal.open { display: flex; align-items: flex-start; justify-content: center; }
+.modal-box { background: #fff; max-width: 850px; width: 100%; border-radius: 8px; overflow: hidden; position: relative; margin: auto; }
+.modal-close { position: absolute; top: 15px; right: 15px; background: var(--industrial-orange); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 5; }
+.modal-img { height: 340px; background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #f5f5f5; }
+.modal-body { padding: 30px 40px 40px; }
+.modal-body h3 { font-size: 28px; margin-bottom: 10px; text-transform: uppercase; }
+.modal-body p { color: #555; line-height: 1.6; margin-bottom: 25px; }
+.specs-table { width: 100%; border-collapse: collapse; }
+.specs-table th { text-align: left; background: var(--dark-charcoal); color: #fff; padding: 10px 15px; font-family: 'Oswald'; font-weight: 500; letter-spacing: 1px; font-size: 13px; text-transform: uppercase; }
+.specs-table td { padding: 9px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+.specs-table tr:nth-child(even) td { background: #fafafa; }
+@media (max-width: 900px) { .page-hero h1 { font-size: 30px; } .modal-img { height: 220px; } .modal-body { padding: 20px; } }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--dark-charcoal); text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; font-family: 'Inter'; box-sizing: border-box; }
+        .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+        .chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .chip span { display: inline-block; padding: 9px 18px; border: 2px solid #ddd; border-radius: 30px; font-size: 13px; font-family: 'Inter'; color: #555; cursor: pointer; transition: 0.25s; user-select: none; }
+        .chip:hover span { border-color: var(--industrial-orange); color: var(--industrial-orange); }
+        .chip input:checked + span { background: var(--industrial-orange); border-color: var(--industrial-orange); color: #fff; font-weight: 600; }
+    </style>
+    <meta property="og:title" content="Excavadoras | RHINO EQUIPMENT COLOMBIA">
+    <meta property="og:description" content="Catálogo técnico de Excavadoras | RHINO EQUIPMENT COLOMBIA Rhino Equipment Colombia. Cotiza por WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rhinoequipos.com/catalog-img/excavadoras.jpg">
+    <meta property="og:url" content="https://rhinoequipos.com/catalog/excavadoras.html">
+    <link rel="canonical" href="https://rhinoequipos.com/catalog/excavadoras.html">
+</head>
+<body>
+<header>
+    <a href="../index.html" class="logo"><img src="../rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPMENT</a>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="../index.html#maquinaria">Maquinaria</a></li>
+            <li><a href="../index.html#paquetes">Planes</a></li>
+            <li><a href="../index.html#contacto">Contacto</a></li>
+            <li><a href="../index.html#contacto" class="btn-cta">Solicitar Cotización</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="page-hero">
+    <div class="hero-content" style="max-width:900px">
+        <a href="../index.html#maquinaria" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Maquinaria</a>
+        <h1>Excavadoras</h1>
+    </div>
+</section>
+
+<section>
+    <div class="section-header">
+        <h2>CATÁLOGO EXCAVADORAS</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="grid-products">
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX10.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX10 Miniexcavadora</h3>
+                <p class="prod-desc">Diseñada para la productividad con diseño de cola reducida para mayor seguridad. Eficiente, innovadora y confortable.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(0)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX18.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX18 Miniexcavadora</h3>
+                <p class="prod-desc">Alta relación potencia-peso, comodidad superior y controlabilidad. Compacta y eficiente en combustible.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(1)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX22.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX22 Miniexcavadora</h3>
+                <p class="prod-desc">compacta, segura y muy productiva. Ideal para espacios reducidos, fácil de transportar en remolques convencionales.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(2)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX30.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX30 Miniexcavadora</h3>
+                <p class="prod-desc">Segura, robusta y fácil de usar. Diseñada para maniobrar fácilmente y equipada con sistema de diagnóstico de la máquina</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(3)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX35.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX35 Miniexcavadora</h3>
+                <p class="prod-desc">Mantenimiento sencillo e intervalos de servicio prolongados para máxima disponibilidad y productividad. Acceso rápido y diseño con mejor refrigeración.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(4)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX50.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX50 Miniexcavadora</h3>
+                <p class="prod-desc">Productividad y rendimiento en los que puede confiar. Con caballaje excepcional y características de serie</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(5)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX708.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX70.8 Miniexcavadora</h3>
+                <p class="prod-desc">Diseñada para mejorar el trabajo. Ideal para espacios reducidos en zonas urbanas, obras hidráulicas y construcción de viviendas</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(6)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX130.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX130 Excavadora Mediana</h3>
+                <p class="prod-desc">Diseñada para máxima productividad y rendimiento, con comodidad, control, confiabilidad y facilidad de servicio superiores</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(7)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX150.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX150 Excavadora Mediana</h3>
+                <p class="prod-desc">Diseñada para máxima productividad y rendimiento, con comodidad, control, confiabilidad y facilidad de servicio superiores</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(8)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX210.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX210 Excavadora</h3>
+                <p class="prod-desc">Diseñada para eficiencia, productividad y seguridad. Visibilidad y confort mejorados para una operación óptima.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(9)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX330.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX330 Excavadora</h3>
+                <p class="prod-desc">Versátil, de bajo consumo y alto rendimiento. Con operación sencilla y funciones avanzadas de seguridad.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(10)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX360.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX360 Excavadora</h3>
+                <p class="prod-desc">Versátil, de bajo consumo y alto rendimiento. Diseñada para elevar su negocio con operación sencilla.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(11)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX450.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX450 Excavadora</h3>
+                <p class="prod-desc">Confiable, versátil y de bajo consumo. Diseñada para mejorar productividad y seguridad con operación sencilla.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(12)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('../catalog-img/modelos/REX700.jpg?v=5');"></div>
+            <div class="card-info">
+                <h3 style="font-size:19px;">REX700 Excavadora</h3>
+                <p class="prod-desc">Hidráulica rápida y receptiva con rendimiento extremo de excavación. Eficiente y de bajo consumo, mantiene la calidad de trabajo.</p>
+                <div class="card-actions">
+                    <a href="javascript:void(0)" onclick="openCatalog(13)" class="btn-catalog"><i class="fas fa-book-open"></i> Ver Catálogo</a>
+                    <a href="../index.html#contacto" class="btn-card">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="catalog-modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <div class="modal-img" id="modal-img"></div>
+        <div class="modal-body">
+            <h3 id="modal-title"></h3>
+            <p id="modal-desc"></p>
+            <table class="specs-table"><thead><tr><th>Especificación</th><th>Valor</th></tr></thead><tbody id="modal-specs"></tbody></table>
+            <a id="modal-pdf" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:25px;background:var(--industrial-orange);color:#fff;padding:14px 28px;border-radius:6px;text-decoration:none;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:14px;transition:0.3s;">
+                <i class="fas fa-file-download"></i> Bajar Catálogo PDF
+            </a>
+        </div>
+    </div>
+</div>
+
+<section id="contacto" class="bg-gray">
+        <div class="section-header">
+            <h2>SOLICITAR INFORMACIÓN</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <p style="font-size: 22px; line-height: 1.6;">Nuestro equipo le contactará pronto para asistirle y preparar pronto una propuesta técnica para sus necesidades específicas.</p>
+                <br>
+                <a href="https://wa.me/573145162548?text=Hola%20Rhino%20Equipment%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20equipos" target="_blank" style="display:inline-flex; align-items:center; gap:12px; background:#25D366; color:#fff; text-decoration:none; padding:16px 30px; border-radius:8px; font-family:'Oswald'; font-size:17px; text-transform:uppercase; letter-spacing:1px; transition:0.3s; box-shadow:0 8px 25px rgba(37,211,102,0.4);" onmouseover="this.style.background='#1fb457'" onmouseout="this.style.background='#25D366'">
+                    <i class="fab fa-whatsapp" style="font-size:26px;"></i> Contáctenos por WhatsApp
+                </a>
+                <br><br>
+                <p style="color:#888; font-size:13px;"><i class="fas fa-lock" style="color:#FF6600;"></i> Sus datos serán tratados conforme a la Ley 1581 de 2012 (Habeas Data) y nuestras políticas de privacidad.</p>
+            </div>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/santiagoburaye@rhinoequipment.us" method="POST">
+                    <input type="hidden" name="_subject" value="Nueva solicitud de información - Rhino Colombia">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="../gracias.html">
+                    <input type="hidden" name="_autoresponse" value="Gracias por contactar a Rhino Equipment Colombia. Un asesor comercial le respondera en menos de 24 horas habiles.">
+                    <div class="form-group"><label>Nombre</label><input type="text" name="Nombre" required></div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;"><label>Organización</label><input type="text" name="Organización" required></div>
+                        <div class="form-group" style="flex:1;"><label>Cargo (opcional)</label><input type="text" name="Cargo" placeholder="Ej: Gerente de Obra"></div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;">
+                            <label>Tipo de Organización</label>
+                            <select name="Tipo de Organización" required>
+                                <option value="">Seleccione...</option>
+                                <option>Empresa / Contratista</option>
+                                <option>Municipio Pequeño</option>
+                                <option>Ciudad Intermedia</option>
+                                <option>Ciudad Grande</option>
+                                <option>Gobernación / Departamento</option>
+                                <option>Entidad Nacional / Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex:1;"><label>Correo Electrónico</label><input type="email" name="Correo Electrónico" required></div>
+                    </div>
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;"><label>WhatsApp / Teléfono</label><input type="tel" name="WhatsApp Teléfono" placeholder="+57 300 000 0000" required></div>
+                        <div class="form-group" style="flex:1;"><label>Ciudad / Departamento</label><input type="text" name="Ciudad Departamento" placeholder="Ej: Medellín, Antioquia"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Qué necesita? <span style="font-weight:400;color:#999;text-transform:none;">(seleccione una o varias)</span></label>
+                        <div class="chips">
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Compra de equipo nuevo"><span>Compra de equipo nuevo</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Alquiler"><span>Alquiler</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Financiación"><span>Financiación</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Repuestos"><span>Repuestos</span></label>
+                            <label class="chip"><input type="checkbox" name="Necesidad" value="Servicio y mantenimiento"><span>Servicio y mantenimiento</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Familias de Maquinaria de Interés <span style="font-weight:400;color:#999;text-transform:none;">(seleccione una o varias)</span></label>
+                        <div class="chips">
+                            <label class="chip"><input type="checkbox" name="Interés" value="Demolición"><span>Demolición</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Construcción"><span>Construcción</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Vías y Pavimentación"><span>Vías y Pavimentación</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Movimiento de Tierra"><span>Movimiento de Tierra</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Minería Artesanal"><span>Minería Artesanal</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Minería Industrial"><span>Minería Industrial</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Agro"><span>Agro</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Energía y Torres de Luz"><span>Energía y Torres de Luz</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Grúas e Izaje"><span>Grúas e Izaje</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Accesorios"><span>Accesorios</span></label>
+                            <label class="chip"><input type="checkbox" name="Interés" value="Otro"><span>Otro</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Mensaje</label><textarea rows="3" name="Mensaje"></textarea></div>
+                    <div class="form-group" style="display:flex; gap:12px; align-items:flex-start; margin-bottom:20px;">
+                        <input type="checkbox" id="habeas-consent" name="Autorización Habeas Data" value="Acepto" required style="width:18px; height:18px; margin-top:3px; flex-shrink:0;">
+                        <label for="habeas-consent" style="font-size:12px; font-weight:400; text-transform:none; letter-spacing:0; line-height:1.5; color:#555; cursor:pointer;">
+                            Autorizo de manera expresa e inequívoca a <strong>Rhino Equipment Colombia</strong> a tratar mis datos personales (nombre, correo y teléfono) con la finalidad de ser contactado por un representante comercial, conforme a la Ley 1581 de 2012 (Habeas Data), el Decreto 1377 de 2013 y las políticas de tratamiento de datos de la compañía. Conozco y acepto los términos del <a href="../politicas.html" style="color:#FF6600;">Aviso de Privacidad</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar</button>
+                </form>
+            </div>
+        </div>
+    
+    </section>
+
+    <footer style="background:#1a1a1a;color:#fff;padding:40px;text-align:center;">
+    <p style="font-family:'Oswald';font-size:20px;margin-bottom:10px;">RHINO EQUIPMENT COLOMBIA</p>
+    <p style="color:#888;">Maquinaria especializada: Demolición, Construcción, Minería y Agricultura</p>
+        <p style="color:#888;margin-top:10px;font-size:13px;"><a href="../politicas.html" style="color:#FF6600;text-decoration:none;">Políticas y Privacidad</a></p>
+</footer>
+
+<script>
+const CATALOG = [{"title": "REX10 Miniexcavadora", "desc": "Diseñada para la productividad con diseño de cola reducida para mayor seguridad. Eficiente, innovadora y confortable.", "img": "../catalog-img/modelos/REX10.jpg?v=5", "specs": [["Potencia del motor kW (hp)", "13.6 (18)"], ["Emisiones (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Régimen nominal del motor rpm", "2,200 rpm"], ["Capacidad de cuchara m3 (cu.Yd)", "0.07 (0.09)"], ["Presión del sistema hidráulico MPa (psi)", "16 (2,320)"], ["Dosing pumps L/min (gpm)", "6.6 (1.7)"], ["Fuerza máxima de excavación kN (lb)", "10.5 (2,360)"], ["Pendiente admisible degrees", "30"], ["Presión sobre el suelo MPa (psi)", "0.02 (2,9)"], ["Velocidad de traslación km/h (mph)", "2(1,24)"], ["Largo total mm (ft)", "3,630 (11.9)"], ["Alto total mm (ft)", "2,150 (7.05)"], ["Ancho total mm (ft)", "990 (3.24)"], ["Ancho de oruga mm (ft)", "230 (0.75)"], ["Radio de giro de la plataforma mm (ft)", "1,180 (3.87)"], ["Largo de oruga mm (ft)", "1,405 (4.6)"], ["Trocha mm (ft)", "1,045 (3.4)"], ["Altura sobre el suelo mm (ft)", "205 (0.67)"], ["End Alto total of boom mm (ft)", "1,105 (3.6)"], ["Ancho exterior de la plataforma mm (ft)", "1,020 (3.3)"], ["Potencia del motor kW (hp)", "13.6 (18)"], ["Emisiones (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Régimen nominal del motor rpm", "2,200 rpm"], ["Capacidad de cuchara m3 (cu.Yd)", "0.07 (0.09)"], ["Presión del sistema hidráulico MPa (psi)", "16 (2,320)"], ["Dosing pumps L/min (gpm)", "6.6 (1.7)"], ["Fuerza máxima de excavación kN (lb)", "10.5 (2,360)"], ["Pendiente admisible degrees", "30"], ["Presión sobre el suelo MPa (psi)", "0.02 (2,9)"], ["Velocidad de traslación km/h (mph)", "2(1,24)"]], "pdf": "rex10-mini-excavator.pdf"}, {"title": "REX18 Miniexcavadora", "desc": "Alta relación potencia-peso, comodidad superior y controlabilidad. Compacta y eficiente en combustible.", "img": "../catalog-img/modelos/REX18.jpg?v=5", "specs": [["Engine (opcional)", "Rhino® (Yanmar)"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "3"], ["Cilindrada L (cu. In)", "1.3(79)"], ["Net Power kW (Hp)", "18.4(25)@2,350 rpm"], ["Fuel System", "Direct Injection"], ["Aspiration", "Naturally Aspirated"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "2.2(1.4)"], ["High", "3.8(2.4)"], ["Type", "Open center, load sensing; dual gear pumps"], ["Pressure Mpa (psi)", "16(2,321)"], ["Max. Flow L/min (gpm) (each)", "35(9.2)"], ["Control", "2 Pilot levers, low-effort hydraulic controls with horn"], ["Rubber Ancho de oruga mm (in)", "230(9.1)"], ["Presión sobre el suelo with Rubber Tracks Kpa (psi)", "29(4.2)"], ["Fuel Tank L (gal)", "28(7)"], ["Sistema de refrigeración L (gal)", "4(1)"], ["Engine Oil L (gal)", "6(2)"], ["Hydraulic Tank L (gal)", "55(15)"], ["Arm Length mm (ft)", "900(3.0)"], ["Fuerza de excavación del brazo kN (lb)", "8.3(1,866)"], ["Fuerza de excavación de cuchara kN (lb)", "11.4(2,563)"], ["Max. Reach mm (ft)", "3,720(12.2)"], ["Max. Reach at Ground Level mm (ft)", "3,640(11.9)"], ["Max. Digging Depth mm (ft)", "1,980(6.5)"], ["Max. Cutting Height mm (ft)", "3,150(10.3)"], ["Max. Dumping Height mm (ft)", "2,070(6.8)"], ["Min. Swing Radius mm (ft)", "1,640(5.4)"], ["Weight kg(lb)", "1,760(3,880)"], ["Overall Length, Transport mm (ft)", "2,380(7.8)"], ["Overall Height mm (ft)", "1,345(4.4)"], ["Length of Track on Ground mm (ft)", "1,185(3.9)"], ["Undercarriage Length mm (ft)", "1,560(5.1)"], ["Counterweight Clearance mm (ft)", "467(1.5)"], ["Upperstructure Width mm (ft)", "960(3.1)"], ["Height to Top of Cab mm (ft)", "2,247(7.4)"], ["Ancho de oruga mm (in)", "230(9.1)"], ["Undercarriage Width mm (ft)", "1,100(3.6)"], ["Min. Altura libre al suelo mm (in)", "212(8.3)"], ["Swing Radius mm (ft)", "1,200(3.9)"]], "pdf": "rex18-mini-excavator.pdf"}, {"title": "REX22 Miniexcavadora", "desc": "compacta, segura y muy productiva. Ideal para espacios reducidos, fácil de transportar en remolques convencionales.", "img": "../catalog-img/modelos/REX22.jpg?v=5", "specs": [["Potencia del motor kW (hp)", "13.6 (18)"], ["Emisiones (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Régimen nominal del motor rpm", "2,200 rpm"], ["Capacidad de cuchara m3 (cu.Yd)", "0.07 (0.09)"], ["Presión del sistema hidráulico MPa (psi)", "16 (2,320)"], ["Dosing pumps L/min (gpm)", "6.6 (1.7)"], ["Fuerza máxima de excavación kN (lb)", "10.5 (2,360)"], ["Pendiente admisible degrees", "30"], ["Presión sobre el suelo MPa (psi)", "0.02 (2,9)"], ["Velocidad de traslación km/h (mph)", "2(1,24)"], ["Largo total mm (ft)", "3,630 (11.9)"], ["Alto total mm (ft)", "2,150 (7.05)"], ["Ancho total mm (ft)", "990 (3.24)"], ["Ancho de oruga mm (ft)", "230 (0.75)"], ["Radio de giro de la plataforma mm (ft)", "1,180 (3.87)"], ["Largo de oruga mm (ft)", "1,405 (4.6)"], ["Trocha mm (ft)", "1,045 (3.4)"], ["Altura sobre el suelo mm (ft)", "205 (0.67)"], ["End Alto total of boom mm (ft)", "1,105 (3.6)"], ["Ancho exterior de la plataforma mm (ft)", "1,020 (3.3)"], ["Maximum digging height mm (ft)", "3,720 (12.2)"], ["Maximum unloading height mm (ft)", "2,260 (7.4)"], ["Maximum digging depth mm (ft)", "2,630 (8.6)"], ["Maximum reach mm (ft)", "4,250 (13.9)"], ["Maximum digging reach at ground level mm (ft)", "4,160 (13.6)"], ["Maximum digging height radius mm (ft)", "2,750 (9.0)"], ["Minimum turning radius mm (ft)", "1,850 (6.0)"], ["Maximum depth of the bucket dozer mm (ft)", "250 (0.8)"], ["Maximum lift height dozer mm (ft)", "230 (0.75)"], ["Peso operativo kg (lb)", "1,200 (2.645)"]], "pdf": "rex22-mini-excavator.pdf"}, {"title": "REX30 Miniexcavadora", "desc": "Segura, robusta y fácil de usar. Diseñada para maniobrar fácilmente y equipada con sistema de diagnóstico de la máquina", "img": "../catalog-img/modelos/REX30.jpg?v=5", "specs": [["Potencia del motor kW (hp)", "24 (33)"], ["Emisiones (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Régimen nominal del motor rpm", "2,200 rpm"], ["Capacidad de cuchara m3 (cu.Yd)", "0.1 (0.14)"], ["Presión del sistema hidráulico MPa (psi)", "18 (2,611)"], ["Dosing pumps L/min (gpm)", "56 (15)"], ["Fuerza máxima de excavación kN (lb)", "18 (4,047)"], ["Pendiente admisible degrees", "30"], ["Presión sobre el suelo MPa (psi)", "32 (4.6)"], ["Velocidad de traslación km/h (mph)", "2.7 (1.6)"], ["Largo total mm (ft)", "4,500 (14.8)"], ["Alto total mm (ft)", "2,250 (7.3)"], ["Ancho total mm (ft)", "1,480 (4.9)"], ["Ancho de oruga mm (ft)", "280 (0.9)"], ["Radio de giro de la plataforma mm (ft)", "1,350 (4.4)"], ["Largo de oruga mm (ft)", "1,800 (5.9)"], ["Trocha mm (ft)", "1,400 (4.6)"], ["Altura sobre el suelo mm (ft)", "238 (0.8)"], ["End Alto total of boom mm (ft)", "1,600 (5.2)"], ["Ancho exterior de la plataforma mm (ft)", "1,160 (3.8)"], ["Maximum digging height mm (ft)", "4,350 (14.2)"], ["Maximum unloading height mm (ft)", "2,850 (9.3)"], ["Maximum digging depth mm (ft)", "2,990 (9.9)"], ["Maximum reach mm (ft)", "4,900 (16.1)"], ["Maximum digging reach at ground level mm (ft)", "4,560 (15)"], ["Maximum digging height radius mm (ft)", "3,050 (10)"], ["Minimum turning radius mm (ft)", "2,100 (6.9)"], ["Maximum depth of the bucket dozer mm (ft)", "290 (1.0)"], ["Maximum lift height dozer mm (ft)", "270 (0.9)"], ["Peso operativo kg (lb)", "3,000 (6.614)"]], "pdf": "rex30-mini-excavator.pdf"}, {"title": "REX35 Miniexcavadora", "desc": "Mantenimiento sencillo e intervalos de servicio prolongados para máxima disponibilidad y productividad. Acceso rápido y diseño con mejor refrigeración.", "img": "../catalog-img/modelos/REX35.jpg?v=5", "specs": [["Engine (opcional)", "Rhino® (Yanmar)"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "4"], ["Cilindrada L (cu. In)", "2.2(134)"], ["Net Power kW (Hp)", "25(34)@2,200 rpm"], ["Fuel System", "Direct Injection"], ["Aspiration", "Naturally Aspirated"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "2.7(1.7)"], ["High", "4.0(2.5)"], ["Type", "Open center, load sensing; dual gear pumps"], ["Pressure Mpa (psi)", "24.5(3,553)"], ["Max. Flow L/min (gpm) (each)", "46(12)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Carrier Rollers (each side)", "1"], ["Track Rollers (each side)", "4"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "36(5.2)"], ["Track", "Rubber"], ["Fuel Tank L (gal)", "82(22)"], ["Sistema de refrigeración L (gal)", "5(1)"], ["Engine Oil L (gal)", "7.4(2)"], ["Hydraulic Tank L (gal)", "90(24)"], ["Arm Length mm (ft)", "1,450(4.8)"], ["Fuerza de excavación del brazo kN (lb)", "19(4,159)"], ["Fuerza de excavación de cuchara kN (lb)", "23.7(5,328)"], ["Max. Reach mm (ft)", "5,530(18.1)"], ["Max. Reach at Ground Level mm (ft)", "5,420(17.8)"], ["Max. Digging Depth mm (ft)", "3,076(10.1)"], ["Max. Cutting Height mm (ft)", "5,030(16.5)"], ["Max. Dumping Height mm (ft)", "3,410(11.2)"], ["Min. Swing Radius mm (ft)", "2,185(7.2)"], ["Weight kg(lb)", "4,200(9,259)"], ["Overall Length, Transport mm (ft)", "5,500(18.0)"], ["Overall Height mm (ft)", "1,861(6.1)"], ["Length of Track on Ground mm (ft)", "2,455(8.1)"], ["Undercarriage Length mm (ft)", "1,600(5.2)"], ["Counterweight Clearance mm (ft)", "585(1.9)"], ["Upperstructure Width mm (ft)", "1,640(5.4)"], ["Ancho de oruga mm (in)", "350(13.8)"], ["Undercarriage Width mm (ft)", "1,750(5.7)"], ["Min. Altura libre al suelo mm (in)", "350(13.8)"]], "pdf": "rex35-mini-excavator.pdf"}, {"title": "REX50 Miniexcavadora", "desc": "Productividad y rendimiento en los que puede confiar. Con caballaje excepcional y características de serie", "img": "../catalog-img/modelos/REX50.jpg?v=5", "specs": [["Engine (opcional)", "Rhino® (Yanmar)"], ["Emisiones (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Potencia del motor kw (hp)@2100rpm", "36.9 (49.5)"], ["Weight kg (lb)", "5,710 (12,588)"], ["Capacidad de cuchara m3", "0.2"], ["Width of Bucket mm (in)", "775 (30.5)"], ["Hydraulic Pressure Mpa", "24.5"], ["Pendiente admisible %", "37.4"], ["Presión sobre el suelo Kpa", "58"], ["Velocidad km/h (mph)", "34"], ["Maximum Length (transport) mm(ft)", "6,035 (19.7)"], ["Overall Height mm (ft)", "2,570 (8.4)"], ["Ancho total mm(ft)", "1,900 (6.2)"], ["Width of Track mm(ft)", "400 (1.3)"], ["Platform tail Turning Radius mm(ft)", "1,660 (5.4)"], ["Length of Track mm(ft)", "2,458 (8.0)"], ["Ground distance mm(ft)", "360 (1.1)"], ["Width of Platform mm(ft)", "1,810 (5.9)"], ["Platform ground distance mm(ft)", "648 (5.9)"], ["Max. Digging Height mm (ft)", "5,700 (18.7)"], ["Max.Digging Depth mm (ft)", "3,935 (12.9)"], ["Min. Turning Radius mm (in)", "2,670 (105)"], ["Max. Digging Radius mm (in)", "6,380 (251)"], ["Max. Dumping Height mm (ft)", "3,380 (11.0)"], ["Max. Digging Reach mm (ft)", "6,129 (20.1)"]], "pdf": "rex50-mini-excavator.pdf"}, {"title": "REX70.8 Miniexcavadora", "desc": "Diseñada para mejorar el trabajo. Ideal para espacios reducidos en zonas urbanas, obras hidráulicas y construcción de viviendas", "img": "../catalog-img/modelos/REX708.jpg?v=5", "specs": [["Engine Make/ Modelo de motor", "YANMAR 4TNV98T"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "4"], ["Cilindrada L (cu. In)", "3.3(201)"], ["Net Power kW (Hp)", "54.3(73)@2,200 rpm"], ["Fuel System", "Direct Injection"], ["Aspiration", "Naturally Aspirated"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "2,7(1.68)"], ["High", "5,1(3.17)"], ["Type", "Open center, load sensing; two variable-displacement axial-piston pumps"], ["Pressure Mpa (psi)", "30(4351.13)"], ["Max. Flow L/min (gpm) (each)", "154(41)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Power Boost Mpa (psi)", "29(4.206)"], ["Carrier Rollers (each side)", "1"], ["Track Rollers (each side)", "5"], ["Shoes (each side) Triple Semi-Grousers", "40"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "30(4.4)"], ["Fuel Tank L (gal)", "130(34)"], ["Sistema de refrigeración L (gal)", "8(2)"], ["Engine Oil L (gal)", "11.7(3)"], ["Hydraulic Tank L (gal)", "90(24)"], ["Swing Mechanism L (gal)", "5(1)"], ["Final Drive Case (each) L (gal)", "70(18)"], ["Arm Length mm (ft)", "1,650(5.4)"], ["Capacidad de cuchara m3 (cu. Yd.)", "0,34(0.44)"], ["Bucket Excavating Force kN ISO (lb)", "60(13,49)"], ["Length of Swing Arm mm (ft)", "3,710(12.17)"], ["Counterweight Height mm (ft)", "1,725(5.7)"], ["Max. Digging Depth mm (ft)", "4,038(13.2)"], ["Overall Length mm (ft)", "6,100(20.0)"], ["Overall Height mm (ft)", "2,515(8.3)"], ["Counterweight Clearance mm (ft)", "760(2.5)"], ["Height to Top of Cab mm (ft)", "2,680(8.8)"], ["Ancho de oruga mm (in)", "450(1.7)"], ["Ancho de vía mm (ft)", "1,700(5.6)"], ["Ancho total with mm (ft)", "2,300(7.5)"]], "pdf": "rex70-mini-excavator.pdf"}, {"title": "REX130 Excavadora Mediana", "desc": "Diseñada para máxima productividad y rendimiento, con comodidad, control, confiabilidad y facilidad de servicio superiores", "img": "../catalog-img/modelos/REX130.jpg?v=5", "specs": [["Engine Make/ Modelo de motor (opcional)", "Cummins 4BTAA3.9 / QSF3.8 or Rhino"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "4"], ["Cilindrada L (cu. In)", "3.9(238) / 3.8 (231)"], ["Net Power kW (Hp) @2,200", "86(115)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged"], ["Fan Drive", "Belt driven / Hydraulic Reversible"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "3(2)"], ["High", "5(3)"], ["Fuerza de tracción kg (lb)", "8,000(17,637)"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "7"], ["Shoes (each side) Triple Semi-Grousers", "42(44)"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi) / Optional", "38(5.5) / 39(5.6)"], ["Fuel Tank L (gal)", "247(65) / 275 (72)"], ["Sistema de refrigeración L (gal)", "14(4)"], ["Engine Oil L (gal)", "11(3)"], ["Hydraulic System L (gal)", "145(38)"], ["Hydraulic Tank L (gal)", "130(34)"], ["Swing Mechanism L (gal)", "0.5(0.1)"], ["Final Drive Case (each) L (gal)", "2.6(0.7)"], ["Arm Length mm (ft)", "2,500(8.2)"], ["Boom Length mm (ft)", "4,600(15.0)"], ["Fuerza de excavación de cuchara kN (lb)", "100(22.480)"], ["Max. Reach mm (ft)", "8,305(27.2)"], ["Max. Reach at Ground Level mm (ft)", "8,305(27.2)"], ["Max. Digging Depth mm (ft)", "5,500(18.0)"], ["Max. Digging Height mm (ft)", "8,630(28.3)"], ["Max. Dumping Height mm (ft)", "6,180(20.3)"], ["Radio de cola mm (ft)", "2,155(7.0) / 2,315 (7.5)"], ["Peso operativo kg(lb) / Optional", "13,000(28.600) / 14,000 (30.864)"], ["Overall Length / Optional mm (ft)", "7,580(24.8) / 7,740(25.3)"], ["Overall Height mm (ft)", "2,880(9.4)"], ["Length of Track on Ground / Optional mm (ft)", "2,750(9.0) 2,800(9.1)/ 3,000(9.8)"], ["Undercarriage Length / Optional mm (ft)", "3,485(11.4) / 3,375(12.2)"], ["Counterweight Clearance mm (ft)", "870(2.9)"], ["Upperstructure Width mm (ft)", "2,490(8.1)"], ["Height to Top of Cab mm (ft)", "2,830(9.2)"], ["Ancho de oruga / Optional mm (ft)", "500(1.6) / 600(1.9) / 700(2.2)"], ["Gauge Width / Optional mm (ft)", "1,960(6.4) / 2,000(6.5)"]], "pdf": "rex130-excavator.pdf"}, {"title": "REX150 Excavadora Mediana", "desc": "Diseñada para máxima productividad y rendimiento, con comodidad, control, confiabilidad y facilidad de servicio superiores", "img": "../catalog-img/modelos/REX150.jpg?v=5", "specs": [["Engine Make/ Modelo de motor (opcional)", "V3800"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "4"], ["Cilindrada L (cu. In)", "3.77(229.9)"], ["Net Power kW (Hp) @2,200", "95(127)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "3(1.86)"], ["High", "5(3.11)"], ["Fuerza de tracción kg (lb)", "11,000(24.251)"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "7"], ["Shoes (each side) Triple Semi-Grousers", "42"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "38(5.5)"], ["Fuel Tank L (gal)", "270(71.3)"], ["Sistema de refrigeración L (gal)", "16(4.2)"], ["Engine Oil L (gal)", "13(3.4)"], ["Hydraulic System L (gal)", "160(42.3)"], ["Hydraulic Tank L (gal)", "130(34.3)"], ["Swing Drive L (gal)", "0.5(0.13)"], ["Final Drive Case (each) L (gal)", "3.0(0.79)"], ["Arm Length mm (ft)", "2,700(8.1)"], ["Boom Length mm (ft)", "5,000(16.5)"], ["Fuerza de excavación de cuchara kN (lb)", "115(25.852)"], ["Max. Reach mm (ft)", "9.200(30.2)"], ["Max. Reach at Ground Level mm (ft)", "9,000(29.6)"], ["Max. Digging Depth mm (ft)", "6,200(20.4)"], ["Max. Cutting Height mm (ft)", "9,500(31.2)"], ["Max. Dumping Height mm (ft)", "6,900(22.6)"], ["Radio de cola mm (ft)", "2,400(7.1)"], ["Peso operativo kg(lb)", "15,000(33.069)"], ["Overall Length (Transport) mm (ft)", "8,700(28.7)"], ["Overall Height to Top of Boom mm (ft)", "3,050(10)"], ["Length of Track on Ground mm (ft)", "2,900(9.6)"], ["Undercarriage Length / Optional mm (ft)", "3,700(12.2)"], ["Counterweight Altura libre al suelo mm (ft)", "950(3.1)"], ["Upper-structure Width mm (ft)", "2,600(8.6)"], ["Height to Top of Cab mm (ft)", "3,000(9.1)"], ["Ancho de oruga mm (ft)", "500(19.7)"], ["Gauge Width / Optional mm (ft)", "2,080(6.1)"], ["Ancho total with Triple Grouser 500 mm Shoes mm (ft)", "2,580(8.6)"]], "pdf": "rex150.pdf"}, {"title": "REX210 Excavadora", "desc": "Diseñada para eficiencia, productividad y seguridad. Visibilidad y confort mejorados para una operación óptima.", "img": "../catalog-img/modelos/REX210.jpg?v=5", "specs": [["Engine Make/ Modelo de motor (opcional)", "Cummins 6BTAA5.9 or Rhino"], ["Emission Rating (opcional)", "Tier 2 / Tier 3"], ["Cylinders", "6"], ["Cilindrada L (cu. In)", "5.9(360)"], ["Net Power (kW/r/min) (Hp)", "@2,000 rpm/ 133(178) / 125(168)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged, air-to-air charge air cooler"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Maximum Travel Velocidads kph(mph):", "5 (3)"], ["Low", "4(2)"], ["High", "5(3)"], ["Fuerza de tracción kg (lb)", "17,400(38,360)"], ["Type", "Open center, load sensing; two variable-displacement axial-piston pumps"], ["Pressure Mpa (psi)", "31(4,554)"], ["Max. Flow L/min (gpm) (each)", "226(60)"], ["Power Boost Mpa (psi)", "34(4,975)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "7"], ["Shoes (each side) Triple Semi-Grousers", "45"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "46.5(6.7)"], ["Fuel Tank L (gal)", "420(111)"], ["Sistema de refrigeración L (gal)", "30(8)"], ["Engine Oil L (gal)", "21.5(6)"], ["Hydraulic System L (gal)", "266(70)"], ["Hydraulic Oil Tank L (gal)", "246(65)"], ["Swing Mechanism L (gal)", "3.4(0.9)"], ["Final Drive Case (each) L (gal)", "5.4(1.4)"], ["Peso operativo kg (lbs)", "21,354(47.078)"], ["Travel Velocidad km/h (mph)", "5.2(3.2)"], ["Velocidad de giro rpm", "11.5"], ["Pendiente admisible (%)", "70"], ["Fuerza de excavación de cuchara (kN)ISO (lbf)", "157(35.3)"], ["Capacidad de cuchara m3 (cu.yd)", "1 (1.3)"], ["Arm Length mm (ft)", "2,900 (9.5)"], ["Overall Length mm (ft)", "9,780 (32.09)"], ["Ancho total mm (ft)", "2,820 (9.25)"], ["Boom m (ft)", "5,7 (18.7)"], ["Alto total (Boom top) mm (ft)", "3,040 (10)"], ["Alto total (Cab top) mm (ft)", "3,250 (10.66)"], ["Counterweight Altura libre al suelo mm (ft)", "1,065 (3.5)"], ["Min. Altura libre al suelo mm (ft)", "466 (1.5)"], ["Turning Radius of Vehicle Tail mm (ft)", "2,720 (8.9)"], ["Largo de oruga on the Ground mm (ft)", "3,260 (10.7)"], ["Track Shoe Length mm (ft)", "4,060 (13.6)"], ["Ancho de vía mm (ft)", "2,180 (7.2)"], ["Ancho de oruga mm (ft)", "2,780 (9.1)"], ["Track Ancho de zapata mm (ft)", "600 (2)"], ["Swing Frame Width mm (ft)", "2,700 (8.9)"], ["Max. Digging Height mm (ft)", "9,275 (30.4)"], ["Max. Dumping Height mm (ft)", "6,560 (21.5)"], ["Max. Digging Depth mm (ft)", "6,515 (21.4)"], ["Max. Vertical Wall Digging Depth mm (ft)", "5,915 (19.4)"], ["Max. Digging Reach mm (ft)", "9,865 (32.4)"], ["Max. Digging Reach at Ground Level mm (ft)", "9,680 (31.8)"], ["Min. Swing Radius mm (ft)", "3,630 (11.9)"], ["Max. Height at Min. Swing Radius mm (ft)", "7,670 (25.2)"], ["Distance from Swing Center to Tail mm (ft)", "2,720 (8.9)"], ["Counterweight Height mm (ft)", "2,120 (7)"], ["Ground Length (During Transporting) mm (ft)", "4,850 (15.9)"]], "pdf": "rex210-excavator.pdf"}, {"title": "REX330 Excavadora", "desc": "Versátil, de bajo consumo y alto rendimiento. Con operación sencilla y funciones avanzadas de seguridad.", "img": "../catalog-img/modelos/REX330.jpg?v=5", "specs": [["Engine", "Cummins 6LTAA8.9 or Rhino®"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "6"], ["Cilindrada L (cu. In)", "8.3(506)"], ["Net Power kW (Hp) @2,000", "241(323) /2,000"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged, air-to-air charge air cooler"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Maximum Travel Velocidads km(mph)", "5.2(3.2)"], ["Low", "3.3(2)"], ["High", "5.2(3.2)"], ["Type", "Open center, load sensing; two variable-displacement axial-piston pumps"], ["Pressure Mpa (psi)", "31(4,554)"], ["Max. Flow L/min (gpm) (each)", "226(60)"], ["Power Boost Mpa (psi)", "34(4,975)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "7"], ["Shoes (each side) Triple Semi-Grousers", "45"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "65(9.4)"], ["Fuel Tank L (gal)", "595(157) / 630(166)"], ["Sistema de refrigeración L (gal)", "20.6(5)"], ["Engine Oil L (gal)", "23(6)"], ["Hydraulic Oil Tank L (gal)", "310(82)"], ["Swing Mechanism L (gal)", "8.2(2.2)"], ["Final Drive Case (each) L (gal)", "8.5(2.2)"], ["Peso operativo kg (lbs)", "33,000 (72.753) / 34,000 (74.957)"], ["Travel Velocidad km/h (mph)", "5.2(3.3)"], ["Velocidad de giro rpm", "10.6"], ["Pendiente admisible (%)", "70"], ["Fuerza de excavación de cuchara (kN) ISO (lbf)", "227(51)"], ["Capacidad de cuchara m3 (cu.yd)", "1.4-1.6 (1.8-2.1)"], ["Arm Length mm (ft)", "3,185 (10.4)"], ["Overall Length mm (ft)", "11,150 (36.6)"], ["Ancho total mm (ft)", "3,190 (10.5)"], ["Boom m (ft)", "6,47 (21.2)"], ["Alto total (Boom top) mm (ft)", "3,180 (10.4)"], ["Alto total (Cap top) mm (ft)", "3,280 (10.8)"], ["Counterweight Altura libre al suelo mm (ft)", "1,210 (4)"], ["Min. Altura libre al suelo mm (ft)", "498 (1.6) / 500 (1.6)"], ["Turning Radius of Vehicle Tail mm (ft)", "3,420 (11.2)"], ["Largo de oruga on the Ground mm (ft)", "3,700 (12.1)"], ["Track Shoe Length mm (ft)", "4,622 (15.2)"], ["Ancho de vía mm (ft)", "2,590 (8.5)"], ["Ancho de oruga mm (ft)", "3,190 (10.5)"], ["Track Ancho de zapata mm (ft)", "600 (2)"], ["Swing Frame Width mm (ft)", "2,995 (9.8)"], ["Max. Digging Height mm (ft)", "10,200 (33.5)"], ["Max. Dumping Height mm (ft)", "7,135 (23.4)"], ["Max. Digging Depth mm (ft)", "7,370 (24.2)"], ["Max. Vertical Wall Digging Depth mm (ft)", "6,380 (20.9)"], ["Max. Digging Reach mm (ft)", "11,100 (36.4)"], ["Max. Digging Reach at Ground Level mm (ft)", "10,910 (35.8)"], ["Min. Swing Radius mm (ft)", "4,265 (14)"], ["Max. Height at Min. Swing Radius mm (ft)", "8,500 (27.9)"], ["Distance from Swing Center to Tail mm (ft)", "3,420 (11.2)"], ["Counterweight Height mm (ft)", "2,265 (7.4)"], ["Ground Length (During Transporting) mm (ft)", "5,750 (18.9)"]], "pdf": "rex330-excavator.pdf"}, {"title": "REX360 Excavadora", "desc": "Versátil, de bajo consumo y alto rendimiento. Diseñada para elevar su negocio con operación sencilla.", "img": "../catalog-img/modelos/REX360.jpg?v=5", "specs": [["Engine", "Cummins 6CTAA8 or Rhino®"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "6"], ["Cilindrada L (cu. In)", "8.3(506)"], ["Net Power kW (Hp)", "192(257)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged, air-to-air charge air cooler"], ["Fan Drive", "Belt driven"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "3(2)"], ["High", "5(3)"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "8"], ["Shoes (each side) Triple Semi-Grousers", "48"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "68(9.8)"], ["Fuel Tank L (gal)", "610(161)"], ["Sistema de refrigeración L (gal)", "45(12)"], ["Engine Oil L (gal)", "32.5(9)"], ["Hydraulic Tank L (gal)", "310(82)"], ["Swing Mechanism L (gal)", "16.7(4.4)"], ["Final Drive Case (each) L (gal)", "8.3(2.2)"], ["Fuel Tank L (gal)", "610(161)"], ["Sistema de refrigeración L (gal)", "45(12)"], ["Engine Oil L (gal)", "32.5(9)"], ["Hydraulic Tank L (gal)", "310(82)"], ["Swing Mechanism L (gal)", "16.7(4.4)"], ["Final Drive Case (each) L (gal)", "8.3(2.2)"], ["Arm Length mm (ft)", "3,185(10.4)"], ["Fuerza de excavación del brazo kN (lb)", "184(41,365)"], ["Fuerza de excavación de cuchara kN (lb)", "208(46,760)"], ["Max. Reach mm (ft)", "11,100(36.4)"], ["Max. Reach at Ground Level mm (ft)", "10,910(35.8)"], ["Max. Digging Depth mm (ft)", "7,370(24.2)"], ["Max. Cutting Height mm (ft)", "10,200(33.5)"], ["Max. Dumping Height mm (ft)", "7,135(23.4)"], ["Radio de cola mm (ft)", "4,265(14.0)"], ["Weight kg(lb)", "34,500(76,059)"], ["Overall Length mm (ft)", "11,080(36.4)"], ["Overall Height mm (ft)", "3,180(10.4)"], ["Length of Track on Ground mm (ft)", "3,700(12.1)"], ["Undercarriage Length mm (ft)", "4,600(15.1)"], ["Counterweight Clearance mm (ft)", "2,265(7.4)"], ["Upperstructure Width mm (ft)", "2,995(9.8)"], ["Height to Top of Cab mm (ft)", "3,280(10.8)"], ["Ancho de oruga mm (in)", "600(23.6)"], ["Gauge Width mm (ft)", "2,590(8.5)"], ["Ancho total with mm (ft)", "3,190(10.5)"]], "pdf": "rex360-excavator.pdf"}, {"title": "REX450 Excavadora", "desc": "Confiable, versátil y de bajo consumo. Diseñada para mejorar productividad y seguridad con operación sencilla.", "img": "../catalog-img/modelos/REX450.jpg?v=5", "specs": [["Engine", "Cummins QSM11 or Rhino®"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "6"], ["Cilindrada L (cu. In)", "11(671)"], ["Net Power kW (Hp)", "251(337)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged, air-to-air charge air cooler"], ["Fan Drive", "Hydraulic"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "3(2)"], ["High", "5.5(3.4)"], ["Type", "Open center, load sensing; two variable-displacement axial-piston pumps"], ["Pressure Mpa (psi)", "34(4,975)"], ["Max. Flow L/min (gpm) (each)", "360(95)"], ["Power Boost Mpa (psi)", "36(5,221)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "8"], ["Shoes (each side) Triple Semi-Grousers", "48"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "72(10.4)"], ["Fuel Tank L (gal)", "650(172)"], ["Sistema de refrigeración L (gal)", "36.8(10)"], ["Engine Oil L (gal)", "38(10)"], ["Hydraulic Tank L (gal)", "335(88)"], ["Swing Mechanism L (gal)", "16.2(4.3)"], ["Final Drive Case (each) L (gal)", "12.0(3.2)"], ["Arm Length mm (ft)", "3,380(11.1)"], ["Fuerza de excavación del brazo kN (lb)", "210(45.187)"], ["Fuerza de excavación de cuchara kN (lb)", "285(64.205)"], ["Max. Reach mm (ft)", "12,025(39.5)"], ["Max. Reach at Ground Level mm (ft)", "11,815(38.8)"], ["Max. Digging Depth mm (ft)", "7,810(25.6)"], ["Max. Cutting Height mm (ft)", "10,910(35.8)"], ["Max. Dumping Height mm (ft)", "7,550(24.8)"], ["Radio de cola mm (ft)", "3,645(12.0)"], ["Weight kg(lb)", "45,800(100,972)"], ["Overall Length mm (ft)", "11,980(39.3)"], ["Overall Height mm (ft)", "3,640(11.9)"], ["Length of Track on Ground mm (ft)", "4,020(13.2)"], ["Undercarriage Length mm (ft)", "4,360(14.3)"], ["Counterweight Clearance mm (ft)", "2,355(7.7)"], ["Upperstructure Width mm (ft)", "3,045(10.0)"], ["Height to Top of Cab mm (ft)", "3,280(10.8)"], ["Ancho de oruga mm (in)", "700(27.6)"], ["Gauge Width mm (ft)", "2,890(9.5)"], ["Ancho total with mm (ft)", "3,490(11.5)"]], "pdf": "rex450-excavator.pdf"}, {"title": "REX700 Excavadora", "desc": "Hidráulica rápida y receptiva con rendimiento extremo de excavación. Eficiente y de bajo consumo, mantiene la calidad de trabajo.", "img": "../catalog-img/modelos/REX700.jpg?v=5", "specs": [["Engine", "Cummins QSX15 or Rhino®"], ["Emission Rating (opcional)", "Tier 2 (Tier 3, Tier 4)"], ["Cylinders", "6"], ["Cilindrada L (cu. In)", "11(671)"], ["Net Power kW (Hp)", "264(354)"], ["Fuel System", "Direct Injection"], ["Aspiration", "Turbocharged, air-to-air charge air cooler"], ["Fan Drive", "Hydraulic"], ["Type", "Dual speed mode for tracks on-dash one-button activation"], ["Low", "2(1)"], ["High", "4(2)"], ["Type", "Open center, load sensing; two variable-displacement axial-piston pumps"], ["Pressure Mpa (psi)", "35(5,076)"], ["Max. Flow L/min (gpm) (each)", "430(114)"], ["Power Boost Mpa (psi)", "36(5,221)"], ["Control", "2 pilot levers, low-effort hydraulic controls with horn and boost buttons"], ["Carrier Rollers (each side)", "2"], ["Track Rollers (each side)", "9"], ["Shoes (each side) Triple Semi-Grousers", "51"], ["Track Adjustment", "Hydraulic"], ["Track Guides", "Front Idler"], ["Track Chain", "Sealed and lubricated"], ["Presión sobre el suelo Kpa (psi)", "89(12.9)"], ["Fuel Tank L (gal)", "900(238)"], ["Sistema de refrigeración L (gal)", "75(20)"], ["Engine Oil L (gal)", "50(13)"], ["Hydraulic Tank L (gal)", "400(106)"], ["Swing Mechanism L (gal)", "15(4.0)"], ["Final Drive Case (each) L (gal)", "16(4.2)"], ["Arm Length mm (ft)", "3,020(9.9)"], ["Fuerza de excavación del brazo kN (lb)", "262(58,900)"], ["Fuerza de excavación de cuchara kN (lb)", "328(73,737)"], ["Max. Reach mm (ft)", "11,740(38.5)"], ["Max. Reach at Ground Level mm (ft)", "11,440(37.5)"], ["Max. Digging Depth mm (ft)", "7,185(23.6)"], ["Max. Cutting Height mm (ft)", "11,140(36.5)"], ["Max. Dumping Height mm (ft)", "7,050(23.1)"], ["Radio de cola mm (ft)", "5,555(18.2)"], ["Weight kg(lb)", "70,000(154,324)"], ["Overall Length mm (ft)", "12,170(39.9)"], ["Overall Height mm (ft)", "4,780(15.7)"], ["Length of Track on Ground mm (ft)", "4,720(15.5)"], ["Undercarriage Length mm (ft)", "5,990(19.7)"], ["Counterweight Clearance mm (ft)", "2,500(8.2)"], ["Upperstructure Width mm (ft)", "4,015(13.2)"], ["Height to Top of Cab mm (ft)", "3,538(11.6)"], ["Ancho de oruga mm (in)", "700(27.6)"], ["Gauge Width mm (ft)", "3,350(11.0)"], ["Ancho total with mm (ft)", "4,000(13.1)"]], "pdf": "rex700-excavator.pdf"}];
+
+function openCatalog(i) {
+    const p = CATALOG[i];
+    document.getElementById('modal-img').style.backgroundImage = "url('" + p.img + "')";
+    document.getElementById('modal-title').textContent = p.title;
+    document.getElementById('modal-desc').textContent = p.desc || 'Consulta las especificaciones técnicas completas de este equipo.';
+    const tb = document.getElementById('modal-specs');
+    tb.innerHTML = p.specs.map(s => '<tr><td>' + s[0] + '</td><td>' + s[1] + '</td></tr>').join('') || '<tr><td colspan="2">Especificaciones disponibles a solicitud.</td></tr>';
+    document.getElementById('modal-pdf').href = '../catalog-pdf/' + p.pdf; document.getElementById('modal-pdf').style.display = p.pdf ? 'inline-flex' : 'none'; document.getElementById('catalog-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('catalog-modal').classList.remove('open');
+    document.body.style.overflow = 'auto';
+}
+document.getElementById('catalog-modal').addEventListener('click', e => { if (e.target.id === 'catalog-modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+const mobileBtn = document.getElementById('mobile-menu');
+const navMenu = document.getElementById('nav-menu');
+if (mobileBtn) mobileBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
+</script>
+        <script>
+        // FormSubmit exige URL absoluta en _next: resolverla contra la pagina actual (funciona en cualquier dominio)
+        document.querySelectorAll('form input[name="_next"]').forEach(function(inp){ try { inp.value = new URL(inp.value, window.location.href).href; } catch(e) {} });
+        </script>
+
+<!-- Boton flotante WhatsApp (conversion) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.wa-float { position: fixed; bottom: 22px; right: 22px; z-index: 500; width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37,211,102,.45); transition: transform .2s, box-shadow .2s; }
+.wa-float:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 10px 26px rgba(37,211,102,.55); }
+.wa-float i { font-size: 30px; color: #fff; }
+.wa-float::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid #25D366;
+  animation: waPulse 1.8s ease-out infinite; }
+@keyframes waPulse { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(1.35); opacity: 0; } }
+@media (max-width: 600px) { .wa-float { width: 50px; height: 50px; bottom: 16px; right: 16px; } .wa-float i { font-size: 26px; } }
+</style>
+<a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+</body>
+</html>
