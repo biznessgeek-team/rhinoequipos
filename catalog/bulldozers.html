@@ -289,7 +289,15 @@
     <meta property="og:image" content="https://rhinoequipos.com/catalog-img/bulldozers.jpg">
     <meta property="og:url" content="https://rhinoequipos.com/catalog/bulldozers.html">
     <link rel="canonical" href="https://rhinoequipos.com/catalog/bulldozers.html">
-</head>
+<!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R7KEY88HK2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R7KEY88HK2');
+    </script>
+    </head>
 <body>
 <header>
     <a href="../index.html" class="logo"><img src="../rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPOS</a>
@@ -560,5 +568,20 @@ if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('clic
 </style>
 <a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
+<script>
+/* GA4: eventos de conversion - Rhino Equipos */
+(function(){
+    function ev(nombre, params){ if (typeof gtag === 'function') gtag('event', nombre, params || {}); }
+    document.addEventListener('click', function(e){
+        var a = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('wa.me') !== -1) ev('whatsapp_click', { pagina: location.pathname });
+        if (/\.pdf(\?|$)/i.test(href)) ev('catalog_download', { archivo: href.split('/').pop().split('?')[0], pagina: location.pathname });
+    }, true);
+    var f = document.querySelector('form[action*="formsubmit.co"]');
+    if (f) f.addEventListener('submit', function(){ ev('form_submit', { pagina: location.pathname }); });
+})();
+</script>
 </body>
 </html>

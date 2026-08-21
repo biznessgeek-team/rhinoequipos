@@ -43,7 +43,15 @@
         @media (max-width: 600px) { h1 { font-size: 30px; } .btn-wa { font-size: 16px; padding: 16px 28px; } header { padding: 16px 20px; } }
     </style>
     <link rel="canonical" href="https://rhinoequipos.com/gracias.html">
-</head>
+<!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R7KEY88HK2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R7KEY88HK2');
+    </script>
+    </head>
 <body>
     <header>
         <a href="index.html" class="logo"><img src="rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPOS</a>
@@ -70,5 +78,9 @@
     <footer>
         <p>© 2026 Rhino Equipos Colombia · <a href="politicas.html">Políticas y Privacidad</a> · Habeas Data Ley 1581 de 2012</p>
     </footer>
+<script>
+/* GA4: conversion de lead (llego a la pagina de gracias) */
+if (typeof gtag === 'function') gtag('event', 'lead', { pagina: 'gracias' });
+</script>
 </body>
 </html>
