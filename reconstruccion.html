@@ -402,7 +402,15 @@
 </script>
     <link rel="canonical" href="https://rhinoequipos.com/reconstruccion.html">
     <meta property="og:url" content="https://rhinoequipos.com/reconstruccion.html">
-</head>
+<!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R7KEY88HK2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R7KEY88HK2');
+    </script>
+    </head>
 <body>
 <header>
     <a href="index.html" class="logo"><img src="rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPOS</a>
@@ -526,6 +534,20 @@ if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('clic
             b.classList.add('usado');
         });
     });
+})();
+</script>
+<script>
+(function(){
+    function ev(nombre, params){ if (typeof gtag === 'function') gtag('event', nombre, params || {}); }
+    document.addEventListener('click', function(e){
+        var a = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('wa.me') !== -1) ev('whatsapp_click', { pagina: location.pathname });
+        if (/\.pdf(\?|$)/i.test(href)) ev('catalog_download', { archivo: href.split('/').pop().split('?')[0], pagina: location.pathname });
+    }, true);
+    var f = document.querySelector('form[action*="formsubmit.co"]');
+    if (f) f.addEventListener('submit', function(){ ev('form_submit', { pagina: location.pathname }); });
 })();
 </script>
 </body>
