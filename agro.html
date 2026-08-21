@@ -318,6 +318,25 @@
             .contact-grid { grid-template-columns: 1fr; }
             .pkg-card.featured { transform: none; }
         }
+        /* Carruseles: margenes laterales y flechas junto al titulo (igual que Inicio/Construccion) */
+        #maquinaria { padding: 80px 40px; }
+        .carousel-header { justify-content: flex-start; }
+        .carousel-nav { margin-left: 30px; }
+        /* Hint visual: la flecha derecha pulsa lentamente hasta que el visitante hace clic */
+        .carousel-btn.hint { animation: hintPulso 2s ease-in-out infinite; }
+        @keyframes hintPulso {
+            0%, 100% { background: #fff; color: var(--dark-charcoal); border-color: var(--dark-charcoal); box-shadow: 0 0 0 rgba(255,102,0,0); }
+            50% { background: var(--industrial-orange); color: #fff; border-color: var(--industrial-orange); box-shadow: 0 0 16px rgba(255,102,0,0.6); }
+        }
+        @media (prefers-reduced-motion: reduce) { .carousel-btn.hint { animation: none; } }
+        /* Seccion PROCESO SIMPLE (misma que Inicio) */
+        .steps { padding: 70px 40px; }
+        .steps-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .step { text-align: center; padding: 0 15px; position: relative; }
+        .step .num { font-family: 'Oswald'; font-size: 92px; line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--industrial-orange); display: block; margin-bottom: 6px; }
+        .step h4 { font-family: 'Oswald'; font-size: 20px; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .step p { color: #aaa; font-size: 14px; }
+        @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr; max-width: 420px; } .step .num { font-size: 64px; } }
     </style>
 
 <script type="application/ld+json">
@@ -376,10 +395,11 @@
         <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
         <nav>
             <ul id="nav-menu">
-                <li><a href="index.html#maquinaria">Construcción</a></li>
-                <li><a href="index.html?skip=1#paquetes">Planes</a></li>
+                <li><a href="index.html">Inicio</a></li>
+            <li><a href="construccion.html#maquinaria">Construcción</a></li>
+                <li><a href="index.html#paquetes">Planes</a></li>
                 <li><a href="mineria.html">Minería</a></li>
-                <li><a href="#maquinaria">Agro</a></li>
+                <li><a href="agro.html">Agro</a></li>
                 <li><a href="#contacto" class="btn-cta">Solicitar Información</a></li>
             </ul>
         </nav>
@@ -404,6 +424,19 @@
                 <a href="#contacto" class="btn btn-outline">Contactar Asesor</a>
                 <!-- Botón Ver Intro desactivado temporalmente -->
             </div>
+        </div>
+    </section>
+
+    <!-- HOME: Proceso simple -->
+    <section class="steps bg-dark">
+        <div class="section-header">
+            <h2>PROCESO SIMPLE</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="steps-grid">
+            <div class="step"><span class="num">01</span><h4>Elige tu equipo</h4><p>20 familias y 131 catálogos técnicos para tu proyecto.</p></div>
+            <div class="step"><span class="num">02</span><h4>Cotiza en minutos</h4><p>WhatsApp directo o formulario. Respuesta en menos de 24 horas.</p></div>
+            <div class="step"><span class="num">03</span><h4>Recibe en tu obra</h4><p>Despliegue en semanas y financiación desde el 10% inicial.</p></div>
         </div>
     </section>
 
@@ -869,5 +902,29 @@
 </style>
 <a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
+<script>
+/* Hint: pulso en la flecha derecha del carrusel al entrar en pantalla, se detiene al hacer clic */
+(function(){
+    var botones = document.querySelectorAll('.carousel-btn[data-dir="1"]');
+    if (!botones.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+            if (en.isIntersecting) {
+                if (!en.target.classList.contains('usado')) {
+                    en.target.classList.add('hint');
+                }
+                io.unobserve(en.target);
+            }
+        });
+    }, { threshold: 0.6 });
+    botones.forEach(function(b){
+        io.observe(b);
+        b.addEventListener('click', function(){
+            b.classList.remove('hint');
+            b.classList.add('usado');
+        });
+    });
+})();
+</script>
 </body>
 </html>

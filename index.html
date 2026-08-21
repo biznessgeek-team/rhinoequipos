@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhino Equipment - Maquinaria Pesada & Planes de Emergencia</title>
+    <title>Rhino Equipos Colombia | Maquinaria Pesada: Construcción, Minería y Agro</title>
     <meta name="description" content="Maquinaria especializada Rhino: demolición, construcción, minería y agricultura. Cotiza flotas completas con entrega en semanas, financiación flexible y soporte 24/7 en Colombia.">
         <link rel="icon" type="image/png" href="favicon.png">
         <meta property="og:title" content="Rhino Equipment Colombia | Maquinaria Pesada para Construcción, Minería y Agro">
@@ -319,6 +319,77 @@
             .contact-grid { grid-template-columns: 1fr; }
             .pkg-card.featured { transform: none; }
         }
+
+        /* ===== HOME: patrones inspirados en yabenmachinery.com (borrador) ===== */
+        .hero-stats { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: center; gap: 20px; padding: 0 20px 28px; }
+        .hero-stats .stat { background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.18); border-top: 3px solid var(--industrial-orange); padding: 16px 34px; border-radius: 6px; text-align: center; min-width: 150px; backdrop-filter: blur(3px); }
+        .hero-stats .stat b { display: block; font-family: 'Oswald'; font-size: 56px; color: #fff; line-height: 1.05; }
+        .hero-stats .stat b i { font-style: normal; color: var(--industrial-orange); font-size: 30px; margin-left: 2px; }
+        .hero-stats .stat span:not(.stat-num) { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #ccc; }
+        .hero-stats .stat .stat-num { font-size: inherit; }
+        .sectores { padding: 70px 40px; }
+        .sectores-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .sector-card { background: #fff; border: 1px solid #eee; overflow: hidden; transition: transform .35s, box-shadow .35s; }
+        .sector-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.15); }
+        .sector-img { height: 230px; overflow: hidden; }
+        .sector-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+        .sector-card:hover .sector-img img { transform: scale(1.06); }
+        .sector-body { padding: 25px; }
+        .sector-body h3 { font-family: 'Oswald'; font-size: 24px; margin-bottom: 8px; color: var(--dark-charcoal); }
+        .sector-body p { color: #666; font-size: 14px; margin-bottom: 14px; }
+        .sector-body ul { list-style: none; margin-bottom: 20px; }
+        .sector-body ul li { font-size: 14px; color: #555; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+        .sector-body ul li i { color: var(--industrial-orange); }
+        .steps { padding: 70px 40px; }
+        .steps-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .step { text-align: center; padding: 0 15px; position: relative; }
+        .step .num { font-family: 'Oswald'; font-size: 92px; line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--industrial-orange); display: block; margin-bottom: 6px; }
+        .step h4 { font-family: 'Oswald'; font-size: 20px; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .step p { color: #aaa; font-size: 14px; }
+        .cta-band { background: linear-gradient(90deg, #1a1a1a 0%, #2b2b2b 100%); border-left: 6px solid var(--industrial-orange); padding: 55px 40px; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+        .cta-band h3 { font-family: 'Oswald'; font-size: 34px; color: #fff; text-transform: uppercase; line-height: 1.2; }
+        .cta-band p { color: #999; margin-top: 6px; font-size: 15px; }
+        .cta-band .wa-cta { display: inline-flex; align-items: center; gap: 12px; background: #25D366; color: #fff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-family: 'Oswald'; font-size: 17px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+        .cta-band .wa-cta:hover { background: #1fb457; }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+        @media (max-width: 900px) {
+            .sectores-grid, .steps-grid { grid-template-columns: 1fr; max-width: 420px; }
+            .hero-stats { flex-wrap: wrap; gap: 10px; padding: 0 14px 84px; }
+            .hero-stats .stat { padding: 10px 18px; min-width: 120px; }
+            .hero-stats .stat b { font-size: 38px; } .hero-stats .stat b i { font-size: 20px; }
+            .step .num { font-size: 64px; }
+            .cta-band { flex-direction: column; text-align: center; }
+        }
+
+        /* HOME: flechas del carrusel junto al titulo (30px a la derecha del texto) */
+        .carousel-header { justify-content: flex-start; }
+        .carousel-nav { margin-left: 30px; }
+        /* HOME: margenes laterales del carrusel de construccion (igual que mineria/agro) */
+        #maquinaria { padding: 80px 40px; }
+        /* HOME: cards de preview mas grandes */
+        .carousel .card { flex: 0 0 440px; }
+        .carousel .card-img { height: 290px; }
+        .card-info h3 { font-size: 26px; }
+        @media (max-width: 900px) {
+            .carousel .card { flex: 0 0 330px; }
+            .carousel .card-img { height: 225px; }
+        }
+        /* Navegacion flotante por secciones */
+        #nav-flotante { position: fixed; right: 24px; bottom: 110px; z-index: 1500; display: flex; flex-direction: column; gap: 8px; }
+        #nav-flotante button { width: 46px; height: 46px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(26,26,26,0.85); color: #fff; font-size: 18px; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.25); transition: background .25s, opacity .25s; backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; }
+        #nav-flotante button:hover:not(:disabled) { background: var(--industrial-orange); }
+        #nav-flotante button:disabled { opacity: .3; cursor: default; }
+        section { scroll-margin-top: 70px; }
+        @media (max-width: 600px) { #nav-flotante { right: 16px; bottom: 84px; } #nav-flotante button { width: 42px; height: 42px; } }
+        /* Hint visual: la flecha derecha pulsa lentamente hasta que el visitante hace clic */
+        .carousel-btn.hint { animation: hintPulso 2s ease-in-out infinite; }
+        @keyframes hintPulso {
+            0%, 100% { background: #fff; color: var(--dark-charcoal); border-color: var(--dark-charcoal); box-shadow: 0 0 0 rgba(255,102,0,0); }
+            50% { background: var(--industrial-orange); color: #fff; border-color: var(--industrial-orange); box-shadow: 0 0 16px rgba(255,102,0,0.6); }
+        }
+        @media (prefers-reduced-motion: reduce) { .carousel-btn.hint { animation: none; } }
     </style>
 
 <script type="application/ld+json">
@@ -385,7 +456,8 @@
         <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
         <nav>
             <ul id="nav-menu">
-                <li><a href="#maquinaria">Construcción</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="construccion.html">Construcción</a></li>
                 <li><a href="#paquetes">Planes</a></li>
                 <li><a href="mineria.html">Minería</a></li>
                 <li><a href="agro.html">Agro</a></li>
@@ -408,7 +480,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-tag">Plan de Reconstrucción Colombia</span>
-            <h1>LA POTENCIA QUE CONSTRUYE COLOMBIA</h1>
+            <h1>EFICACIA Y POTENCIA PARA<br>RECONSTRUIR A COLOMBIA</h1>
             <p>Capacidad Superior, Menor Costo, Mayor Rapidez de Entrega.</p>
             <div class="hero-btns">
                 <a href="#paquetes" class="btn btn-primary">Ver Planes</a>
@@ -416,7 +488,151 @@
                 <button id="play-intro-btn" class="btn btn-play"><i class="fas fa-play"></i> Ver Intro</button>
             </div>
         </div>
+        <div class="hero-stats">
+            <div class="stat"><b><span class="stat-num" data-count="117">0</span></b><span>Modelos de equipo</span></div>
+            <div class="stat"><b><span class="stat-num" data-count="10">0</span><i>%</i></b><span>Inicio · Financiación flexible</span></div>
+            <div class="stat"><b>24<i>H</i></b><span>Tiempo de respuesta</span></div>
+        </div>
     </section>
+
+
+    <!-- HOME: Soluciones por sector -->
+    <section class="sectores bg-gray" id="sectores">
+        <div class="section-header">
+            <h2>SOLUCIONES POR SECTOR</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="sectores-grid">
+            <div class="sector-card">
+                <div class="sector-img"><img src="catalog-img/excavadoras.jpg" alt="Equipos de construcción Rhino"></div>
+                <div class="sector-body">
+                    <h3>CONSTRUCCIÓN</h3>
+                    <p>Demolición, movimiento de tierras y reconstrucción urbana.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Planes de emergencia y reconstrucción</li>
+                        <li><i class="fas fa-check-circle"></i> Despliegue inmediato en obra</li>
+                    </ul>
+                    <a href="construccion.html" class="btn-card">Ver equipos de construcción</a>
+                </div>
+            </div>
+            <div class="sector-card">
+                <div class="sector-img"><img src="catalog-img/cards/mineria-01.jpg" alt="Equipos de minería Rhino"></div>
+                <div class="sector-body">
+                    <h3>MINERÍA</h3>
+                    <p>Perforación, cargue y acarreo para minería industrial.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Mineria industrial y artesanal</li>
+                        <li><i class="fas fa-check-circle"></i> Equipos robustos, soporte 24/7</li>
+                    </ul>
+                    <a href="mineria.html" class="btn-card">Ver equipos de minería</a>
+                </div>
+            </div>
+            <div class="sector-card">
+                <div class="sector-img"><img src="catalog-img/cards/agro-01.jpg" alt="Equipos agro Rhino"></div>
+                <div class="sector-body">
+                    <h3>AGRO</h3>
+                    <p>Preparación de suelos y mecanización agrícola.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Tractores y rotavators</li>
+                        <li><i class="fas fa-check-circle"></i> Más eficiencia por hectárea</li>
+                    </ul>
+                    <a href="agro.html" class="btn-card">Ver equipos agro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Por Qué Nosotros -->
+    <section class="bg-dark">
+        <div class="section-header">
+            <h2>POR QUÉ ELEGIRNOS</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="why-grid">
+            <div><div class="why-icon"><i class="fas fa-truck-moving"></i></div><h4>Despliegue Inmediato</h4><p>Semanas y no Meses.</p></div>
+            <div><div class="why-icon"><i class="fas fa-hand-holding-usd"></i></div><h4>Financiación Flexible</h4><p>Desde 10% inicial.</p></div>
+            <div><div class="why-icon"><i class="fas fa-tools"></i></div><h4>Soporte 24/7</h4><p>Técnicos en sitio.</p></div>
+            <div><div class="why-icon"><i class="fas fa-certificate"></i></div><h4>Calidad Certificada</h4><p>Garantía de fábrica.</p></div>
+        </div>
+    </section>
+
+
+    <!-- Paquetes -->
+    <section id="paquetes" class="bg-gray">
+        <div class="section-header">
+            <h2>PAQUETES DE EMERGENCIA</h2>
+            <div class="divider"></div>
+            <p>Planes operativos por fases para la respuesta inmediata ante la emergencia. Cada configuración se adapta al tipo de entidad contratante.</p>
+        </div>
+        <div class="grid-3">
+            <div class="pkg-phase">
+                <div class="phase-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 1</span>
+                <h3>CONECTIVIDAD VIAL</h3>
+                <p class="phase-desc">Apertura urgente de corredores viales principales y vías terciarias afectadas por deslizamientos. Recupera el acceso a comunidades aisladas cuando cada hora cuenta.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 15+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 7-10 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 1: Conectividad Vial')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 1: Conectividad Vial')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
+            <div class="pkg-phase featured">
+                <div class="phase-img" style="background-image: url('hero-bg/1 - Colombia Terremoto.webp');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 2</span>
+                <h3>GESTIÓN ESCOMBROS</h3>
+                <p class="phase-desc">Demolición controlada y manejo seguro de estructuras colapsadas bajo las normativas vigentes. Habilita espacios para la atención humanitaria y el despeje de zonas urbanas.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 18+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 10-15 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 2: Gestión Escombros')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 2: Gestión Escombros')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
+            <div class="pkg-phase">
+                <div class="phase-img" style="background-image: url('catalog-img/motoniveladoras.jpg');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 3</span>
+                <h3>RECONSTRUCCIÓN</h3>
+                <p class="phase-desc">Obras civiles definitivas de infraestructura y dragado preventivo de ríos obstruidos. La solución de largo plazo para reactivar el desarrollo de las regiones afectadas.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 11+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 15-20 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 3: Reconstrucción')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 3: Reconstrucción')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- HOME: Proceso simple -->
+    <section class="steps bg-dark">
+        <div class="section-header">
+            <h2>PROCESO SIMPLE</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="steps-grid">
+            <div class="step"><span class="num">01</span><h4>Elige tu equipo</h4><p>20 familias y 131 catálogos técnicos para tu proyecto.</p></div>
+            <div class="step"><span class="num">02</span><h4>Cotiza en minutos</h4><p>WhatsApp directo o formulario. Respuesta en menos de 24 horas.</p></div>
+            <div class="step"><span class="num">03</span><h4>Recibe en tu obra</h4><p>Despliegue en semanas y financiación desde el 10% inicial.</p></div>
+        </div>
+    </section>
+
 
     <!-- Maquinaria -->
     <section id="maquinaria">
@@ -518,160 +734,143 @@
             </div>
         </div>
 
-        <!-- Carrusel 2: Grupos de Maquinaria Rhino -->
-        <div class="carousel" id="carousel-2">
-            <div class="carousel-header">
-                <span class="carousel-title">EQUIPOS COMPLEMENTARIOS</span>
-                <div class="carousel-nav">
-                    <button class="carousel-btn" data-target="track-2" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn" data-target="track-2" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="carousel-track" id="track-2">
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/compactadores-suelos.jpg'); --bg-movil: url('catalog-img/cards/compactadores-suelos.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Compactadores de Suelos</h3>
-                        <ul class="specs"><li><i class="fas fa-compress"></i> Compactación de terraplenes</li><li><i class="fas fa-mountain"></i> Base sólida para obra</li></ul>
-                        <a href="catalog/compactadores-suelos.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/vibro-compactadores.jpg'); --bg-movil: url('catalog-img/cards/vibro-compactadores.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Vibro Compactadores</h3>
-                        <ul class="specs"><li><i class="fas fa-bolt"></i> Vibración de alta frecuencia</li><li><i class="fas fa-compress"></i> Densidad uniforme</li></ul>
-                        <a href="catalog/vibro-compactadores.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/cargadores-ruedas.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Cargadores de Ruedas</h3>
-                        <ul class="specs"><li><i class="fas fa-weight-hanging"></i> Alta capacidad de carga</li><li><i class="fas fa-cogs"></i> Ciclos rápidos de acarreo</li></ul>
-                        <a href="catalog/cargadores-ruedas.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/camiones.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Camiones</h3>
-                        <ul class="specs"><li><i class="fas fa-truck-moving"></i> Acarreo de materiales</li><li><i class="fas fa-truck-monster"></i> Configuraciones off-road</li></ul>
-                        <a href="catalog/camiones.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/motoniveladoras.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Motoniveladoras</h3>
-                        <ul class="specs"><li><i class="fas fa-ruler-horizontal"></i> Precisión de nivelación</li><li><i class="fas fa-road"></i> Mantenimiento de vías</li></ul>
-                        <a href="catalog/motoniveladoras.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/asfaltadoras.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Asfaltadoras</h3>
-                        <ul class="specs"><li><i class="fas fa-road"></i> Pavimentación continua</li><li><i class="fas fa-ruler-horizontal"></i> Acabado uniforme</li></ul>
-                        <a href="catalog/asfaltadoras.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/perfiladoras.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Perfiladoras de Asfalto</h3>
-                        <ul class="specs"><li><i class="fas fa-bolt"></i> Fresado de pavimento</li><li><i class="fas fa-tools"></i> Reciclado de material</li></ul>
-                        <a href="catalog/perfiladoras.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/tiende-tubos.jpg'); --bg-movil: url('catalog-img/cards/tiende-tubos.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Tiende Tubos</h3>
-                        <ul class="specs"><li><i class="fas fa-grip-lines"></i> Tendido de tubería</li><li><i class="fas fa-truck-monster"></i> Operación en zanja</li></ul>
-                        <a href="catalog/tiende-tubos.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/compactadores-neumaticos.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Compactadores Neumáticos</h3>
-                        <ul class="specs"><li><i class="fas fa-circle-notch"></i> Ruedas de neumáticos</li><li><i class="fas fa-road"></i> Sellado de superficies</li></ul>
-                        <a href="catalog/compactadores-neumaticos.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('catalog-img/compactadores-tandem.jpg');"></div>
-                    <div class="card-info">
-                        <h3>Compactadores Tandem</h3>
-                        <ul class="specs"><li><i class="fas fa-compress"></i> Doble tambor vibratorio</li><li><i class="fas fa-road"></i> Acabado de asfalto</li></ul>
-                        <a href="catalog/compactadores-tandem.html" class="btn-card">Ver Catálogo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- Paquetes -->
-    <section id="paquetes" class="bg-gray">
+
+    <!-- HOME: Preview MINERIA -->
+    <section class="bg-gray" style="padding: 60px 40px 30px;">
         <div class="section-header">
-            <h2>PAQUETES DE EMERGENCIA</h2>
+            <h2>EQUIPOS MINERÍA INDUSTRIAL</h2>
             <div class="divider"></div>
-            <p>Planes operativos por fases para la respuesta inmediata ante la emergencia. Cada configuración se adapta al tipo de entidad contratante.</p>
         </div>
-        <div class="grid-3">
-            <div class="pkg-phase">
-                <div class="phase-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
-                <div class="phase-body">
-                <span class="phase-tag">Fase 1</span>
-                <h3>CONECTIVIDAD VIAL</h3>
-                <p class="phase-desc">Apertura urgente de corredores viales principales y vías terciarias afectadas por deslizamientos. Recupera el acceso a comunidades aisladas cuando cada hora cuenta.</p>
-                <div class="phase-metrics">
-                    <div><i class="fas fa-truck-monster"></i> 15+ máquinas por flota</div>
-                    <div><i class="fas fa-shipping-fast"></i> Entrega en 7-10 días</div>
-                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
-                </div>
-                <div class="phase-actions">
-                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 1: Conectividad Vial')">Ver Más</a>
-                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 1: Conectividad Vial')">Cotizar Ahora</a>
-                </div>
+        <div class="carousel">
+            <div class="carousel-header">
+                <span class="carousel-title">Subterránea y Superficie</span>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" data-target="track-min" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" data-target="track-min" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-            <div class="pkg-phase featured">
-                <div class="phase-img" style="background-image: url('hero-bg/1 - Colombia Terremoto.webp');"></div>
-                <div class="phase-body">
-                <span class="phase-tag">Fase 2</span>
-                <h3>GESTIÓN ESCOMBROS</h3>
-                <p class="phase-desc">Demolición controlada y manejo seguro de estructuras colapsadas bajo las normativas vigentes. Habilita espacios para la atención humanitaria y el despeje de zonas urbanas.</p>
-                <div class="phase-metrics">
-                    <div><i class="fas fa-truck-monster"></i> 18+ máquinas por flota</div>
-                    <div><i class="fas fa-shipping-fast"></i> Entrega en 10-15 días</div>
-                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+            <div class="carousel-track" id="track-min">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/mineria-01.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Perforadoras Frontales</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Cobertura hasta 5.5 m × 4.5 m</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
-                <div class="phase-actions">
-                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 2: Gestión Escombros')">Ver Más</a>
-                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 2: Gestión Escombros')">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/mineria-02.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Wheel Dozers Subterráneos</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Potencia 220 kW (295 Hp)</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/mineria-03.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Cargadores Subterráneos</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Carga nominal 7,000 kg</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
-            </div>
-            <div class="pkg-phase">
-                <div class="phase-img" style="background-image: url('catalog-img/motoniveladoras.jpg');"></div>
-                <div class="phase-body">
-                <span class="phase-tag">Fase 3</span>
-                <h3>RECONSTRUCCIÓN</h3>
-                <p class="phase-desc">Obras civiles definitivas de infraestructura y dragado preventivo de ríos obstruidos. La solución de largo plazo para reactivar el desarrollo de las regiones afectadas.</p>
-                <div class="phase-metrics">
-                    <div><i class="fas fa-truck-monster"></i> 11+ máquinas por flota</div>
-                    <div><i class="fas fa-shipping-fast"></i> Entrega en 15-20 días</div>
-                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/mineria-04.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Camiones Subterráneos</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Carga nominal 20,000 kg</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
-                <div class="phase-actions">
-                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 3: Reconstrucción')">Ver Más</a>
-                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 3: Reconstrucción')">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/mineria-05.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Empernadora Hidráulica</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Cobertura hasta 13.0 × 10.5 m</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/mineria-06.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Martillos de Minería</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Alcance vertical 6,022 mm</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/mineria-07.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Perforadora de Superficie</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Perforación hasta 28 m</li></ul>
+                        <a href="mineria.html" class="btn-card">Ver en detalle</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div style="text-align:center; margin: 25px 0 15px;"><a href="mineria.html" class="btn-card" style="display:inline-block; padding: 14px 40px;">VER TODA LA MINERÍA</a></div>
+    </section>
+
+    <!-- HOME: Preview AGRO -->
+    <section style="padding: 60px 40px 30px;">
+        <div class="section-header">
+            <h2>EQUIPOS PARA AGRICULTURA</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="carousel">
+            <div class="carousel-header">
+                <span class="carousel-title">Segadoras y Equipos sobre Orugas</span>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" data-target="track-agro" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" data-target="track-agro" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="carousel-track" id="track-agro">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/agro-01.jpg');"></div>
+                    <div class="card-info">
+                        <h3>RCW1015T</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Producción 10 – 15 t/h</li></ul>
+                        <a href="agro.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/agro-02.jpg');"></div>
+                    <div class="card-info">
+                        <h3>RCW1520T</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Producción 15 – 20 t/h</li></ul>
+                        <a href="agro.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/agro-03.jpg');"></div>
+                    <div class="card-info">
+                        <h3>RCW2030T</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Producción 20 – 30 t/h</li></ul>
+                        <a href="agro.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/agro-04.jpg');"></div>
+                    <div class="card-info">
+                        <h3>RWCW-180</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Ancho de corte 2,350 mm</li></ul>
+                        <a href="agro.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cards/agro-05.jpg');"></div>
+                    <div class="card-info">
+                        <h3>RWCW-190</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Ancho de corte 3,100 mm</li></ul>
+                        <a href="agro.html" class="btn-card">Ver en detalle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin: 25px 0 15px;"><a href="agro.html" class="btn-card" style="display:inline-block; padding: 14px 40px;">VER TODO EL AGRO</a></div>
     </section>
 
     <!-- Popup de configuraciones por tipo de cliente -->
@@ -823,19 +1022,6 @@
         </div>
     </div>
 
-    <!-- Por Qué Nosotros -->
-    <section class="bg-dark">
-        <div class="section-header">
-            <h2>POR QUÉ ELEGIRNOS</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="why-grid">
-            <div><div class="why-icon"><i class="fas fa-truck-moving"></i></div><h4>Despliegue Inmediato</h4><p>Semanas y no Meses.</p></div>
-            <div><div class="why-icon"><i class="fas fa-hand-holding-usd"></i></div><h4>Financiación Flexible</h4><p>Desde 10% inicial.</p></div>
-            <div><div class="why-icon"><i class="fas fa-tools"></i></div><h4>Soporte 24/7</h4><p>Técnicos en sitio.</p></div>
-            <div><div class="why-icon"><i class="fas fa-certificate"></i></div><h4>Calidad Certificada</h4><p>Garantía de fábrica.</p></div>
-        </div>
-    </section>
 
     <!-- Contacto -->
     <section id="contacto" class="bg-gray">
@@ -929,6 +1115,16 @@
                 </form>
             </div>
         </div>
+    </section>
+
+
+    <!-- HOME: Banda CTA -->
+    <section class="cta-band">
+        <div>
+            <h3>¿LISTO PARA EQUIPAR TU PROYECTO?</h3>
+            <p>Hable con un asesor hoy mismo — cotización sin compromiso.</p>
+        </div>
+        <a class="wa-cta" href="https://wa.me/573145162548?text=Hola%20Rhino%20Equipos%2C%20quiero%20cotizar%20maquinaria%20para%20mi%20proyecto" target="_blank"><i class="fab fa-whatsapp" style="font-size:26px;"></i> Cotizar por WhatsApp</a>
     </section>
 
     <footer style="background:#1a1a1a;color:#fff;padding:30px;text-align:center;">
@@ -1158,7 +1354,106 @@
 @keyframes waPulse { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(1.35); opacity: 0; } }
 @media (max-width: 600px) { .wa-float { width: 50px; height: 50px; bottom: 16px; right: 16px; } .wa-float i { font-size: 26px; } }
 </style>
+<div id="nav-flotante" role="navigation" aria-label="Navegación de secciones">
+    <button id="nf-subir" aria-label="Volver al inicio de la página" title="Subir al inicio"><i class="fas fa-chevron-up"></i></button>
+    <button id="nf-bajar" aria-label="Ir a la siguiente sección" title="Siguiente sección"><i class="fas fa-chevron-down"></i></button>
+</div>
 <a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
+
+<script>
+/* HOME (borrador): contadores animados + reveal al hacer scroll — inspirado en yabenmachinery.com */
+(function(){
+    var elems = [];
+    ['.section-header', '.sector-card', '.step', '.pkg-card', '.why-grid > div', '.cta-band'].forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(e){ e.classList.add('reveal'); elems.push(e); });
+    });
+    var mostrar = function(el){ el.classList.add('visible'); };
+    if (!('IntersectionObserver' in window)) { elems.forEach(mostrar); }
+    else {
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(en){ if (en.isIntersecting) { mostrar(en.target); io.unobserve(en.target); } });
+        }, { threshold: 0.15 });
+        elems.forEach(function(e){ io.observe(e); });
+    }
+    var nums = document.querySelectorAll('.stat-num');
+    if ('IntersectionObserver' in window && nums.length) {
+        var io2 = new IntersectionObserver(function(entries){
+            entries.forEach(function(en){
+                if (!en.isIntersecting) return;
+                io2.unobserve(en.target);
+                var el = en.target, meta = parseInt(el.getAttribute('data-count'), 10), t0 = null;
+                function tick(ts){
+                    if (!t0) t0 = ts;
+                    var p = Math.min((ts - t0) / 1500, 1); p = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(meta * p);
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }, { threshold: 0.4 });
+        nums.forEach(function(n){ io2.observe(n); });
+    } else { nums.forEach(function(n){ n.textContent = n.getAttribute('data-count'); }); }
+})();
+</script>
+<script>
+/* Navegacion flotante: subir al inicio / bajar seccion por seccion */
+(function(){
+    var subir = document.getElementById('nf-subir');
+    var bajar = document.getElementById('nf-bajar');
+    if (!subir || !bajar) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var comportamiento = reduce ? 'auto' : 'smooth';
+    var secciones = Array.prototype.slice.call(document.querySelectorAll('section')).filter(function(sec){
+        return sec.offsetHeight > 80 && getComputedStyle(sec).display !== 'none';
+    });
+    function actualizar(){
+        var y = window.scrollY || document.documentElement.scrollTop;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        subir.disabled = y < 40;
+        bajar.disabled = max - y < 40;
+    }
+    subir.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: comportamiento });
+    });
+    bajar.addEventListener('click', function(){
+        var base = (window.scrollY || document.documentElement.scrollTop) + window.innerHeight * 0.35;
+        var siguiente = null;
+        for (var i = 0; i < secciones.length; i++){
+            var top = secciones[i].getBoundingClientRect().top + (window.scrollY || 0);
+            if (top > base + 10) { siguiente = secciones[i]; break; }
+        }
+        if (siguiente) { siguiente.scrollIntoView({ behavior: comportamiento, block: 'start' }); }
+        else { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: comportamiento }); }
+    });
+    window.addEventListener('scroll', actualizar, { passive: true });
+    window.addEventListener('resize', actualizar);
+    actualizar();
+})();
+</script>
+<script>
+/* Hint: pulso en la flecha derecha del carrusel al entrar en pantalla, se detiene al hacer clic */
+(function(){
+    var botones = document.querySelectorAll('.carousel-btn[data-dir="1"]');
+    if (!botones.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+            if (en.isIntersecting) {
+                if (!en.target.classList.contains('usado')) {
+                    en.target.classList.add('hint');
+                }
+                io.unobserve(en.target);
+            }
+        });
+    }, { threshold: 0.6 });
+    botones.forEach(function(b){
+        io.observe(b);
+        b.addEventListener('click', function(){
+            b.classList.remove('hint');
+            b.classList.add('usado');
+        });
+    });
+})();
+</script>
 </body>
 </html>

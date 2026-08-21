@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maquinaria para Minería | RHINO EQUIPMENT COLOMBIA</title>
-    <meta name="description" content="Equipos Rhino para minería subterránea y de superficie: perforadoras, cargadores y camiones mineros con especificaciones, catálogos PDF y cotización directa por WhatsApp.">
+    <title>Maquinaria Pesada para Construcción | Rhino Equipos Colombia</title>
+    <meta name="description" content="Maquinaria especializada Rhino: demolición, construcción, minería y agricultura. Cotiza flotas completas con entrega en semanas, financiación flexible y soporte 24/7 en Colombia.">
         <link rel="icon" type="image/png" href="favicon.png">
-        <meta property="og:title" content="Maquinaria para Minería | Rhino Equipment Colombia">
-        <meta property="og:description" content="Equipos Rhino para minería subterránea y de superficie: perforadoras, cargadores y camiones mineros con especificaciones, catálogos PDF y cotización directa por WhatsApp.">
+        <meta property="og:title" content="Rhino Equipment Colombia | Maquinaria Pesada para Construcción, Minería y Agro">
+        <meta property="og:description" content="Maquinaria especializada Rhino: demolición, construcción, minería y agricultura. Cotiza flotas completas con entrega en semanas, financiación flexible y soporte 24/7 en Colombia.">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="https://rhinoequipos.com/catalog-img/mineria-01.jpg">
+        <meta property="og:image" content="https://rhinoequipos.com/catalog-img/excavadoras.jpg">
         <meta property="og:locale" content="es_CO">
         <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -314,11 +314,12 @@
         footer { background: #0A0A0A; color: #fff; padding: 40px; text-align: center; }
         
         @media (max-width: 768px) {
+            .card-img[style*="--bg-movil"] { background-image: var(--bg-movil) !important; }
             .hero h1 { font-size: 36px; }
             .contact-grid { grid-template-columns: 1fr; }
             .pkg-card.featured { transform: none; }
         }
-        /* Carruseles: margenes laterales y flechas junto al titulo (igual que Inicio/Construccion) */
+        /* Carruseles: margenes laterales y flechas junto al titulo (igual que Inicio) */
         #maquinaria { padding: 80px 40px; }
         .carousel-header { justify-content: flex-start; }
         .carousel-nav { margin-left: 30px; }
@@ -329,14 +330,6 @@
             50% { background: var(--industrial-orange); color: #fff; border-color: var(--industrial-orange); box-shadow: 0 0 16px rgba(255,102,0,0.6); }
         }
         @media (prefers-reduced-motion: reduce) { .carousel-btn.hint { animation: none; } }
-        /* Seccion PROCESO SIMPLE (misma que Inicio) */
-        .steps { padding: 70px 40px; }
-        .steps-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .step { text-align: center; padding: 0 15px; position: relative; }
-        .step .num { font-family: 'Oswald'; font-size: 92px; line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--industrial-orange); display: block; margin-bottom: 6px; }
-        .step h4 { font-family: 'Oswald'; font-size: 20px; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .step p { color: #aaa; font-size: 14px; }
-        @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr; max-width: 420px; } .step .num { font-size: 64px; } }
     </style>
 
 <script type="application/ld+json">
@@ -347,6 +340,13 @@
   "description": "Venta de maquinaria pesada para construcción, minería y agricultura en Colombia: excavadoras, bulldozers, cargadores, compactadores y más.",
   "telephone": "+573145162548",
   "email": "santiagoburaye@rhinoequipment.us",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida 5ta Norte #21-22, Oficina 502, Edificio Centro Versalles",
+    "addressLocality": "Cali",
+    "addressRegion": "Valle del Cauca",
+    "addressCountry": "CO"
+  },
   "areaServed": { "@type": "Country", "name": "Colombia" },
   "priceRange": "$$$",
   "openingHours": "Mo-Fr 08:00-18:00",
@@ -358,14 +358,15 @@
   }
 }
 </script>
-    <meta property="og:url" content="https://rhinoequipos.com/mineria.html">
-    <link rel="canonical" href="https://rhinoequipos.com/mineria.html">
+    <meta property="og:url" content="https://rhinoequipos.com/construccion.html">
+    <link rel="canonical" href="https://rhinoequipos.com/construccion.html">
 </head>
 <body>
 
-    <!-- Video Intro Overlay (desactivado temporalmente: clase "hidden" y sin bloqueo de scroll) -->
+    <!-- Video Intro Overlay -->
+    <!-- Pantalla inicial SUSPENDIDA temporalmente (logo + botones). Para reactivar: quitar clase "hidden". El video sigue disponible vía botón VER INTRO en el Hero -->
     <div id="video-intro-container" class="hidden">
-        <video id="intro-video" playsinline>
+        <video id="intro-video" playsinline preload="metadata">
             <source src="intro.mp4" type="video/mp4">
         </video>
         
@@ -396,10 +397,11 @@
         <nav>
             <ul id="nav-menu">
                 <li><a href="index.html">Inicio</a></li>
-            <li><a href="construccion.html#maquinaria">Construcción</a></li>
-                <li><a href="index.html#paquetes">Planes</a></li>
+                <li><a href="#maquinaria">Construcción</a></li>
+                <li><a href="#paquetes">Planes</a></li>
                 <li><a href="mineria.html">Minería</a></li>
                 <li><a href="agro.html">Agro</a></li>
+                <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#contacto" class="btn-cta">Solicitar Información</a></li>
             </ul>
         </nav>
@@ -408,183 +410,390 @@
     <!-- Hero -->
     <section class="hero" id="inicio">
         <div class="hero-slides">
-            <div class="hero-slide active" style="background-image: url('catalog-img/mineria-01.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-02.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-03.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-04.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-05.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-06.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-07.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-08.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('catalog-img/mineria-09.jpg')"></div>
+            <div class="hero-slide active" style="background-image: url('hero-bg/construccion-1.webp')"></div>
+            <div class="hero-slide" style="background-image: url('hero-bg/construccion-2.webp')"></div>
+            <div class="hero-slide" style="background-image: url('hero-bg/construccion-3.webp')"></div>
+            <div class="hero-slide" style="background-image: url('hero-bg/construccion-4.webp')"></div>
+            <div class="hero-slide" style="background-image: url('hero-bg/construccion-5.webp')"></div>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-tag">Maquinaria para Minería</span>
-            <h1>EQUIPOS ESPECIALIZADOS<br>PARA EXPLOTACION MINERA</h1>
+            <span class="hero-tag">Maquinaria Amarilla</span>
+            <h1>EQUIPOS PARA<br>RECONSTRUIR A COLOMBIA</h1>
             <p>Capacidad Superior, Menor Costo, Mayor Rapidez de Entrega.</p>
             <div class="hero-btns">
-                <a href="#maquinaria" class="btn btn-primary">Ver Equipos</a>
+                <a href="#paquetes" class="btn btn-primary">Ver Planes</a>
                 <a href="#contacto" class="btn btn-outline">Contactar Asesor</a>
-                <!-- Botón Ver Intro desactivado temporalmente -->
+                <button id="play-intro-btn" class="btn btn-play"><i class="fas fa-play"></i> Ver Intro</button>
             </div>
         </div>
     </section>
 
-    <!-- HOME: Proceso simple -->
-    <section class="steps bg-dark">
+    <!-- Paquetes -->
+    <section id="paquetes" class="bg-gray">
         <div class="section-header">
-            <h2>PROCESO SIMPLE</h2>
+            <h2>PAQUETES DE EMERGENCIA</h2>
             <div class="divider"></div>
+            <p>Planes operativos por fases para la respuesta inmediata ante la emergencia. Cada configuración se adapta al tipo de entidad contratante.</p>
         </div>
-        <div class="steps-grid">
-            <div class="step"><span class="num">01</span><h4>Elige tu equipo</h4><p>20 familias y 131 catálogos técnicos para tu proyecto.</p></div>
-            <div class="step"><span class="num">02</span><h4>Cotiza en minutos</h4><p>WhatsApp directo o formulario. Respuesta en menos de 24 horas.</p></div>
-            <div class="step"><span class="num">03</span><h4>Recibe en tu obra</h4><p>Despliegue en semanas y financiación desde el 10% inicial.</p></div>
+        <div class="grid-3">
+            <div class="pkg-phase">
+                <div class="phase-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 1</span>
+                <h3>CONECTIVIDAD VIAL</h3>
+                <p class="phase-desc">Apertura urgente de corredores viales principales y vías terciarias afectadas por deslizamientos. Recupera el acceso a comunidades aisladas cuando cada hora cuenta.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 15+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 7-10 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 1: Conectividad Vial')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 1: Conectividad Vial')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
+            <div class="pkg-phase featured">
+                <div class="phase-img" style="background-image: url('hero-bg/1 - Colombia Terremoto.webp');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 2</span>
+                <h3>GESTIÓN ESCOMBROS</h3>
+                <p class="phase-desc">Demolición controlada y manejo seguro de estructuras colapsadas bajo las normativas vigentes. Habilita espacios para la atención humanitaria y el despeje de zonas urbanas.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 18+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 10-15 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 2: Gestión Escombros')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 2: Gestión Escombros')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
+            <div class="pkg-phase">
+                <div class="phase-img" style="background-image: url('catalog-img/motoniveladoras.jpg');"></div>
+                <div class="phase-body">
+                <span class="phase-tag">Fase 3</span>
+                <h3>RECONSTRUCCIÓN</h3>
+                <p class="phase-desc">Obras civiles definitivas de infraestructura y dragado preventivo de ríos obstruidos. La solución de largo plazo para reactivar el desarrollo de las regiones afectadas.</p>
+                <div class="phase-metrics">
+                    <div><i class="fas fa-truck-monster"></i> 11+ máquinas por flota</div>
+                    <div><i class="fas fa-shipping-fast"></i> Entrega en 15-20 días</div>
+                    <div><i class="fas fa-hand-holding-heart"></i> Descuento solidario por emergencia</div>
+                </div>
+                <div class="phase-actions">
+                    <a href="javascript:void(0)" class="btn-vermas" onclick="openIncludesPopup('Fase 3: Reconstrucción')">Ver Más</a>
+                    <a href="javascript:void(0)" class="btn-cotizar" onclick="openQuoteModal('Fase 3: Reconstrucción')">Cotizar Ahora</a>
+                </div>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <!-- Maquinaria -->
     <section id="maquinaria">
         <div class="section-header">
-            <h2>EQUIPOS PARA MINERÍA</h2>
+            <h2>DEMOLICION Y CONSTRUCCION URBANA</h2>
             <div class="divider"></div>
-            <p>Equipos mineros de última generación para minería subterránea y de superficie, sinónimo de excelencia.</p>
         </div>
 
+        <!-- Carrusel 1: Grupos de Maquinaria -->
         <div class="carousel" id="carousel-1">
             <div class="carousel-header">
-                <span class="carousel-title">EQUIPOS MINERIA INDUSTRIAL</span>
+                <span class="carousel-title">EQUIPOS MAS DEMANDADOS</span>
                 <div class="carousel-nav">
                     <button class="carousel-btn" data-target="track-1" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                     <button class="carousel-btn" data-target="track-1" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
             <div class="carousel-track" id="track-1">
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/cards/mineria-01.jpg');"></div>
-                <div class="card-info">
-                    <h3>Perforadoras<br>Frontales</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(0)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Perforadoras Frontales')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/minicargadores.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Minicargadores</h3>
+                        <ul class="specs"><li><i class="fas fa-compress-arrows-alt"></i> Compactas y versátiles</li><li><i class="fas fa-tools"></i> Múltiples accesorios</li></ul>
+                        <a href="catalog/minicargadores.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/retroexcavadoras.jpg'); --bg-movil: url('catalog-img/cards/retroexcavadoras.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Retroexcavadoras</h3>
+                        <ul class="specs"><li><i class="fas fa-cogs"></i> Doble función pala/retro</li><li><i class="fas fa-bolt"></i> Gran versatilidad urbana</li></ul>
+                        <a href="catalog/retroexcavadoras.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Excavadoras</h3>
+                        <ul class="specs"><li><i class="fas fa-weight-hanging"></i> Alta fuerza de excavación</li><li><i class="fas fa-cogs"></i> Motores Cummins/Perkins</li></ul>
+                        <a href="catalog/excavadoras.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/bulldozers.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Bulldozers</h3>
+                        <ul class="specs"><li><i class="fas fa-mountain"></i> Hoja 6 way</li><li><i class="fas fa-cogs"></i> Alto torque</li></ul>
+                        <a href="catalog/bulldozers.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/martillos.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Martillos Hidráulicos</h3>
+                        <ul class="specs"><li><i class="fas fa-gavel"></i> Rotura de concreto y roca</li><li><i class="fas fa-bolt"></i> Potencia hidráulica</li></ul>
+                        <a href="catalog/martillos.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/dozers-ruedas.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Dozers de Ruedas</h3>
+                        <ul class="specs"><li><i class="fas fa-truck-monster"></i> Movilidad en superficie</li><li><i class="fas fa-mountain"></i> Empuje de alto volumen</li></ul>
+                        <a href="catalog/dozers-ruedas.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/excavadoras-ruedas.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Excavadoras de Ruedas</h3>
+                        <ul class="specs"><li><i class="fas fa-truck-monster"></i> Traslado rápido en obra</li><li><i class="fas fa-cogs"></i> Ideal para zonas urbanas</li></ul>
+                        <a href="catalog/excavadoras-ruedas.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cargadores-orugas.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Cargadores de Orugas</h3>
+                        <ul class="specs"><li><i class="fas fa-weight-hanging"></i> Carga en terrenos difíciles</li><li><i class="fas fa-cogs"></i> Tracción de orugas</li></ul>
+                        <a href="catalog/cargadores-orugas.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/torre-orugas.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Torre-Orugas</h3>
+                        <ul class="specs"><li><i class="fas fa-building"></i> Izaje de materiales</li><li><i class="fas fa-truck-monster"></i> Base de orugas móvil</li></ul>
+                        <a href="catalog/torre-orugas.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/torres-luz.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Torres de Luz</h3>
+                        <ul class="specs"><li><i class="fas fa-lightbulb"></i> Iluminación de obra 360°</li><li><i class="fas fa-battery-full"></i> Operación nocturna continua</li></ul>
+                        <a href="catalog/torres-luz.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/cards/mineria-02.jpg');"></div>
-                <div class="card-info">
-                    <h3>Wheel Dozers Subterráneos</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(1)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Wheel Dozers Subterráneos')" class="btn-card">Cotizar Ahora</a>
-                    </div>
+        </div>
+
+        <!-- Carrusel 2: Grupos de Maquinaria Rhino -->
+        <div class="carousel" id="carousel-2">
+            <div class="carousel-header">
+                <span class="carousel-title">EQUIPOS COMPLEMENTARIOS</span>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" data-target="track-2" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" data-target="track-2" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/mineria-03.jpg');"></div>
-                <div class="card-info">
-                    <h3>Cargadores Subterráneos</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(2)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Cargadores Subterráneos')" class="btn-card">Cotizar Ahora</a>
+            <div class="carousel-track" id="track-2">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/compactadores-suelos.jpg'); --bg-movil: url('catalog-img/cards/compactadores-suelos.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Compactadores de Suelos</h3>
+                        <ul class="specs"><li><i class="fas fa-compress"></i> Compactación de terraplenes</li><li><i class="fas fa-mountain"></i> Base sólida para obra</li></ul>
+                        <a href="catalog/compactadores-suelos.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/mineria-04.jpg');"></div>
-                <div class="card-info">
-                    <h3>Camiones Subterráneos</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(3)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Camiones Subterráneos')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/vibro-compactadores.jpg'); --bg-movil: url('catalog-img/cards/vibro-compactadores.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Vibro Compactadores</h3>
+                        <ul class="specs"><li><i class="fas fa-bolt"></i> Vibración de alta frecuencia</li><li><i class="fas fa-compress"></i> Densidad uniforme</li></ul>
+                        <a href="catalog/vibro-compactadores.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/cards/mineria-05.jpg');"></div>
-                <div class="card-info">
-                    <h3>Empernadora Hidraúlica</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(4)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Empernadora Hidraúlica')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/cargadores-ruedas.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Cargadores de Ruedas</h3>
+                        <ul class="specs"><li><i class="fas fa-weight-hanging"></i> Alta capacidad de carga</li><li><i class="fas fa-cogs"></i> Ciclos rápidos de acarreo</li></ul>
+                        <a href="catalog/cargadores-ruedas.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/cards/mineria-06.jpg');"></div>
-                <div class="card-info">
-                    <h3>Martillos de Minería Subterránea</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(5)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Martillos de Minería Subterránea')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/camiones.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Camiones</h3>
+                        <ul class="specs"><li><i class="fas fa-truck-moving"></i> Acarreo de materiales</li><li><i class="fas fa-truck-monster"></i> Configuraciones off-road</li></ul>
+                        <a href="catalog/camiones.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/cards/mineria-07.jpg');"></div>
-                <div class="card-info">
-                    <h3>Perforadora de Superficie</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(6)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Perforadora de Superficie')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/motoniveladoras.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Motoniveladoras</h3>
+                        <ul class="specs"><li><i class="fas fa-ruler-horizontal"></i> Precisión de nivelación</li><li><i class="fas fa-road"></i> Mantenimiento de vías</li></ul>
+                        <a href="catalog/motoniveladoras.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/mineria-08.jpg');"></div>
-                <div class="card-info">
-                    <h3>Tracks Jaw Crusher Mobile Station 300-400 t/h</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(7)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Tracks Jaw Crusher Mobile Station 300-400 t/h')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/asfaltadoras.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Asfaltadoras</h3>
+                        <ul class="specs"><li><i class="fas fa-road"></i> Pavimentación continua</li><li><i class="fas fa-ruler-horizontal"></i> Acabado uniforme</li></ul>
+                        <a href="catalog/asfaltadoras.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('catalog-img/mineria-09.jpg');"></div>
-                <div class="card-info">
-                    <h3>Crawler-Type Mobile Screening Station 200-400 t/h</h3>
-                    <ul class="specs"><li style="display:none"></li></ul>
-                    <div class="card-actions" style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="javascript:void(0)" onclick="openCatalogSpec(8)" class="btn-card" style="background:#1A1A1A;border:2px solid #1A1A1A;color:#fff;">Ver Catálogo</a>
-                        <a href="javascript:void(0)" onclick="openQuoteModal('Crawler-Type Mobile Screening Station 200-400 t/h')" class="btn-card">Cotizar Ahora</a>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/perfiladoras.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Perfiladoras de Asfalto</h3>
+                        <ul class="specs"><li><i class="fas fa-bolt"></i> Fresado de pavimento</li><li><i class="fas fa-tools"></i> Reciclado de material</li></ul>
+                        <a href="catalog/perfiladoras.html" class="btn-card">Ver Catálogo</a>
                     </div>
                 </div>
-            </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/tiende-tubos.jpg'); --bg-movil: url('catalog-img/cards/tiende-tubos.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Tiende Tubos</h3>
+                        <ul class="specs"><li><i class="fas fa-grip-lines"></i> Tendido de tubería</li><li><i class="fas fa-truck-monster"></i> Operación en zanja</li></ul>
+                        <a href="catalog/tiende-tubos.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/compactadores-neumaticos.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Compactadores Neumáticos</h3>
+                        <ul class="specs"><li><i class="fas fa-circle-notch"></i> Ruedas de neumáticos</li><li><i class="fas fa-road"></i> Sellado de superficies</li></ul>
+                        <a href="catalog/compactadores-neumaticos.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('catalog-img/compactadores-tandem.jpg');"></div>
+                    <div class="card-info">
+                        <h3>Compactadores Tandem</h3>
+                        <ul class="specs"><li><i class="fas fa-compress"></i> Doble tambor vibratorio</li><li><i class="fas fa-road"></i> Acabado de asfalto</li></ul>
+                        <a href="catalog/compactadores-tandem.html" class="btn-card">Ver Catálogo</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Popup catálogo minería -->
-    <div class="modal" id="spec-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:3000; overflow-y:auto; padding:40px 15px;">
-        <div style="background:#fff; max-width:850px; width:100%; border-radius:8px; overflow:hidden; position:relative; margin:auto;">
-            <button onclick="document.getElementById('spec-modal').style.display='none'; document.body.style.overflow='auto';" style="position:absolute;top:15px;right:15px;background:#FF6600;color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;z-index:5;"><i class="fas fa-times"></i></button>
-            <div id="spec-img" style="height:340px;background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f5f5f5;"></div>
-            <div style="padding:30px 40px 40px;">
-                <h3 id="spec-title" style="font-size:28px;margin-bottom:10px;text-transform:uppercase;"></h3>
-                <p id="spec-desc" style="color:#555;line-height:1.6;margin-bottom:25px;"></p>
-                <table style="width:100%;border-collapse:collapse;">
-                    <thead><tr><th style="text-align:left;background:#1A1A1A;color:#fff;padding:10px 15px;font-family:'Oswald';font-size:13px;text-transform:uppercase;letter-spacing:1px;">Especificación</th><th style="text-align:left;background:#1A1A1A;color:#fff;padding:10px 15px;font-family:'Oswald';font-size:13px;text-transform:uppercase;letter-spacing:1px;">Valor</th></tr></thead>
-                    <tbody id="spec-body"></tbody>
-                </table>
-                <a id="modal-pdf" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:25px;background:#FF6600;color:#fff;padding:14px 28px;border-radius:6px;text-decoration:none;font-family:'Oswald';text-transform:uppercase;letter-spacing:1px;font-size:14px;">
-                    <i class="fas fa-file-download"></i> Bajar Catálogo PDF
-                </a>
+    <!-- Popup de configuraciones por tipo de cliente -->
+    <div class="includes-popup" id="includesPopup">
+        <div class="popup-box">
+            <div class="popup-head">
+                <h3><span id="popup-phase-tag">FASE</span><span id="popup-phase-name" style="color:#fff;font-size:22px;letter-spacing:0;display:block;text-transform:none;"></span></h3>
+                <button class="popup-close" onclick="closeIncludesPopup()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="popup-tabs">
+                <button class="popup-tab active" onclick="switchPopupTab(0)">Empresa / Contratista</button>
+                <button class="popup-tab" onclick="switchPopupTab(1)">Municipio Pequeño</button>
+                <button class="popup-tab" onclick="switchPopupTab(2)">Ciudad Intermedia</button>
+                <button class="popup-tab" onclick="switchPopupTab(3)">Ciudad Grande</button>
+                <button class="popup-tab" onclick="switchPopupTab(4)">Gobernación / Depto</button>
+            </div>
+
+            <div class="tab-panel active" data-panel="0">
+                <h4><i class="fas fa-hard-hat"></i> Flota para Consorcios y Obra Pública Vial</h4>
+                <ul class="machine-list">
+                    <li><i class="fas fa-check-circle"></i> 3 Retroexcavadoras RH-30B (líneas hidráulicas auxiliares estándar)</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Excavadoras REX210</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Cargadores de Ruedas RWL132</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Motoniveladora RM120</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Camión Articulado RADT40</li>
+                </ul>
+                <h4>Ventajas Clave</h4>
+                <ul class="adv-list">
+                    <li><i class="fas fa-tools"></i> Kit de mantenimiento mayor incluido el primer año</li>
+                    <li><i class="fas fa-gas-pump"></i> Optimización de consumo de ACPM para turnos continuos</li>
+                    <li><i class="fas fa-file-contract"></i> Documentación lista para consorcios y subcontratos de obra pública</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-vermas" onclick="openQuoteModalFromPopup('Empresa/Contratista')">Cotizar Esta Configuración</a>
+            </div>
+
+            <div class="tab-panel" data-panel="1">
+                <h4><i class="fas fa-home"></i> Configuración Económica para Alcaldías (Vías 4, 5 y 6)</h4>
+                <ul class="machine-list">
+                    <li><i class="fas fa-check-circle"></i> 2 Retroexcavadoras RH-30B</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Minicargadora RS50-S con accesorios</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Vibrocompactador RC30</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Torre de Luz RLT4000M</li>
+                </ul>
+                <h4>Ventajas Clave</h4>
+                <ul class="adv-list">
+                    <li><i class="fas fa-gas-pump"></i> Bajo consumo de ACPM, ideal para presupuestos municipales</li>
+                    <li><i class="fas fa-arrows-alt"></i> Alta maniobrabilidad en vías rurales estrechas</li>
+                    <li><i class="fas fa-truck"></i> Transporte sencillo sin permisos especiales de carga</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-vermas" onclick="openQuoteModalFromPopup('Municipio Pequeño')">Cotizar Esta Configuración</a>
+            </div>
+
+            <div class="tab-panel" data-panel="2">
+                <h4><i class="fas fa-city"></i> Kit Operativo para Secretarías de Infraestructura</h4>
+                <ul class="machine-list">
+                    <li><i class="fas fa-check-circle"></i> 4 Retroexcavadoras RH-30B</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Excavadoras REX150</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Cargadores de Ruedas RWL102</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Motoniveladora RM80</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Compactador Tandem RCT30H</li>
+                </ul>
+                <h4>Ventajas Clave</h4>
+                <ul class="adv-list">
+                    <li><i class="fas fa-tools"></i> Programas de mantenimiento preventivo programado</li>
+                    <li><i class="fas fa-bolt"></i> Respuesta técnica en menos de 24 horas</li>
+                    <li><i class="fas fa-road"></i> Versatilidad para malla vial urbana y espacio público</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-vermas" onclick="openQuoteModalFromPopup('Ciudad Intermedia')">Cotizar Esta Configuración</a>
+            </div>
+
+            <div class="tab-panel" data-panel="3">
+                <h4><i class="fas fa-building"></i> Flotas de Alto Rendimiento con Soporte 24/7</h4>
+                <ul class="machine-list">
+                    <li><i class="fas fa-check-circle"></i> 6 Excavadoras REX210 / REX330</li>
+                    <li><i class="fas fa-check-circle"></i> 4 Retroexcavadoras RH-30B</li>
+                    <li><i class="fas fa-check-circle"></i> 3 Cargadores de Ruedas RWL163</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Motoniveladoras RM138</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Camiones Articulados RADT60</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Martillo Hidráulico RH3255EX</li>
+                </ul>
+                <h4>Ventajas Clave</h4>
+                <ul class="adv-list">
+                    <li><i class="fas fa-headset"></i> Soporte técnico in-situ 24/7 con técnicos dedicados</li>
+                    <li><i class="fas fa-network-wired"></i> Operación simultánea en frentes de obra múltiples</li>
+                    <li><i class="fas fa-boxes"></i> Almacén de repuestos críticos en ciudad</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-vermas" onclick="openQuoteModalFromPopup('Ciudad Grande')">Cotizar Esta Configuración</a>
+            </div>
+
+            <div class="tab-panel" data-panel="4">
+                <h4><i class="fas fa-landmark"></i> Flotas de Gran Volumen para Red Vial Secundaria</h4>
+                <ul class="machine-list">
+                    <li><i class="fas fa-check-circle"></i> 8 Excavadoras REX330</li>
+                    <li><i class="fas fa-check-circle"></i> 6 Motoniveladoras RM165</li>
+                    <li><i class="fas fa-check-circle"></i> 4 Cargadores de Ruedas RWL235</li>
+                    <li><i class="fas fa-check-circle"></i> 3 Bulldozers RD36</li>
+                    <li><i class="fas fa-check-circle"></i> 2 Tiende Tubos RPL45</li>
+                </ul>
+                <h4>Ventajas Clave</h4>
+                <ul class="adv-list">
+                    <li><i class="fas fa-calendar-alt"></i> Planes de mediano y largo plazo con flota escalable</li>
+                    <li><i class="fas fa-map-marked-alt"></i> Cobertura departamental con flotas distribuidas</li>
+                    <li><i class="fas fa-graduation-cap"></i> Capacitación de operadores incluida</li>
+                </ul>
+                <a href="javascript:void(0)" class="btn-vermas" onclick="openQuoteModalFromPopup('Gobernación/Departamento')">Cotizar Esta Configuración</a>
             </div>
         </div>
     </div>
 
-    <!-- Paquetes -->
-        <!-- Modal de captación de leads -->
+    <!-- Modal de captación de leads -->
     <div id="quoteLeadModal">
         <div class="quote-box">
             <div class="quote-head">
@@ -620,7 +829,7 @@
             <div class="quote-confirm" id="quoteConfirm">
                 <i class="fas fa-check-circle"></i>
                 <h4>¡Solicitud Enviada!</h4>
-                <p>Se abrió un chat de WhatsApp con nuestro asesor con tu solicitud. Si no se abrió automáticamente, escríbenos al <strong>+57 314 516 2548</strong>.</p>
+                <p>Se abrió un chat de WhatsApp con nuestro asesor con tu solicitud. Si no se abrió automáticamente, escríbenos al <strong><a href="tel:+573145162548" style="color:inherit;">+57 314 516 2548</a></strong>.</p>
                 <button class="btn-cotizar" style="margin-top:20px;" onclick="closeQuoteModal()">Cerrar</button>
             </div>
         </div>
@@ -841,7 +1050,8 @@
             });
         }
 
-        // document.body.style.overflow = 'hidden'; // DESACTIVADO: intro en pausa (no bloquear scroll)
+        // INTRO SUSPENDIDA: nunca bloquear scroll al cargar. El overlay arranca con clase "hidden".
+        // El botón VER INTRO del Hero sigue funcionando: playVideo() quita la clase y reproduce el video.
 
         // Mobile Menu Logic
         const mobileBtn = document.getElementById('mobile-menu');
@@ -877,8 +1087,23 @@
         // ===== PAQUETES DE EMERGENCIA: Popups y Lead WhatsApp =====
         let quoteTarget = '';
 
-                
-        
+        function openIncludesPopup(phaseName) {
+            const parts = phaseName.split(': ');
+            document.getElementById('popup-phase-tag').textContent = parts[0] || '';
+            document.getElementById('popup-phase-name').textContent = parts[1] || phaseName;
+            document.getElementById('includesPopup').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeIncludesPopup() {
+            document.getElementById('includesPopup').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchPopupTab(idx) {
+            document.querySelectorAll('.popup-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+            document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+        }
+
         function openQuoteModal(pkgName) {
             quoteTarget = pkgName;
             document.getElementById('quote-target-label').textContent = 'Paquete: ' + pkgName + '. Completa tus datos y un asesor te contactará de inmediato.';
@@ -886,7 +1111,13 @@
             document.getElementById('quoteLeadModal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-                function closeQuoteModal() {
+        function openQuoteModalFromPopup(clientType) {
+            const phaseName = document.getElementById('popup-phase-name').textContent || '';
+            closeIncludesPopup();
+            openQuoteModal(phaseName + ' — Configuración ' + clientType);
+            document.getElementById('lead-type').value = clientType;
+        }
+        function closeQuoteModal() {
             document.getElementById('quoteLeadModal').classList.remove('open');
             document.body.style.overflow = 'auto';
         }
@@ -895,16 +1126,6 @@
             document.getElementById('quoteConfirm').style.display = 'none';
         }
 
-        const CATALOG_MIN = [{"title": "Perforadoras Frontales", "desc": "Las perforadoras de frente subterráneas Rhino® están diseñadas para las exigentes condiciones de la minería subterránea, y combinan perforación de precisión, eficiencia operativa y sistemas de control avanzados en cada máquina.", "img": "catalog-img/cards/mineria-01.jpg", "specs": [["Motor Eléctrico", "55kW (74Hp)"], ["Potencia Perforación", "18kW (24Hp)"], ["Potencia Motor Diesel", "49kW (66Hp)"], ["Área Min. Cobertura", "2.0 m x 2.0 m"], ["Área Max. Cobertura", "5.5 m x 4.5 m"]], "pdf": "min-es-face-drill.pdf"}, {"title": "Wheel Dozers Subterráneos", "desc": "Las excavadoras de ruedas subterráneas Rhino® están diseñadas para satisfacer las exigencias extremas de la minería subterránea, y ofrecen una potencia de empuje excepcional, eficiencia operativa y seguridad avanzada en cada máquina.", "img": "catalog-img/cards/mineria-02.jpg", "specs": [["Peso Operacional", "13,000 kg"], ["Blade Capacity", "3.0 m³"], ["Displacement", "5.9 L"], ["Overall Height", "2,800 mm"], ["Potencia del Motor", "220kW (295Hp)"]], "pdf": "min-es-underground-wheel-dozer.pdf?v=2"}, {"title": "Cargadores Subterráneos", "desc": "Los cargadores de ruedas Rhino® para minería están diseñados para las exigentes condiciones de la minería a cielo abierto y subterránea y combinan un potente rendimiento de carga, una durabilidad excepcional y un control avanzado por parte del operador en cada máquina.", "img": "catalog-img/mineria-03.jpg", "specs": [["Capacidad de Carga Nominal", "7,000 kg"], ["Capacidad del Balde", "3.5 m³"], ["Fuerza de Ruptura", "175.9 kN"], ["Peso Operacional", "22,000 kg"], ["Potencia del Motor", "93kW (125Hp)"]], "pdf": "min-es-underground-wheel-loader.pdf"}, {"title": "Camiones Subterráneos", "desc": "Los camiones subterráneos Rhino® están diseñados para las exigentes condiciones de las operaciones mineras modernas, y combinan una capacidad de transporte excepcional, eficiencia operativa y características de seguridad avanzadas en cada máquina.", "img": "catalog-img/mineria-04.jpg", "specs": [["Capacidad de Carga Nominal", "20,000 kg"], ["Hopper Capacity", "10.0 m³"], ["Displacement", "7.7 L"], ["Peso Operacional", "22,600 kg"], ["Potencia del Motor", "329kW (441Hp)"]], "pdf": "min-es-underground-trucks.pdf"}, {"title": "Empernadora Hidraúlica", "desc": "Los martillos de minería subterráneos Rhino® están diseñados para mejorar la seguridad y la productividad en las operaciones mineras subterráneas, al proporcionar un desprendimiento de rocas eficiente y confiable para el soporte del terreno.", "img": "catalog-img/cards/mineria-05.jpg", "specs": [["Peso Operacional", "12,965 kg"], ["Potencia del taladro", "15kw (21Hp)"], ["Potencia del Motor", "64kW (86Hp)"], ["Min. coverage area", "2.8 m x 2.8 m"], ["Área Max. Cobertura", "6.0 m x 6.0 m"], ["Área Min. Cobertura", "4.5 m x 4.5 m"], ["Min. Coverage area", "7.1 m x 6.7 m"], ["Max. Coverage area", "13.0 m x 10.5 m"]], "pdf": "min-es-rock-bolting-rigs.pdf"}, {"title": "Martillos de Minería Subterránea", "desc": "Los martillos de minería subterráneos Rhino® están diseñados para mejorar la seguridad y la productividad en las operaciones mineras subterráneas, al proporcionar un desprendimiento de rocas eficiente y confiable para el soporte del terreno.", "img": "catalog-img/cards/mineria-06.jpg", "specs": [["Potencia del Motor", "67kW (90Hp)"], ["Peso Operacional", "9,500 kg"], ["Alcance Vertical", "6,022 mm"], ["Altura máx. de escalado", "6,035 mm"], ["Máx. alcance horizontal", "5,235 mm"]], "pdf": "min-es-underground-scalers.pdf"}, {"title": "Perforadora de Superficie", "desc": "Las perforadoras de superficie Rhino® están diseñadas para ofrecer precisión, potencia y confiabilidad en las aplicaciones más exigentes de minería a cielo abierto, canteras y construcción.", "img": "catalog-img/cards/mineria-07.jpg", "specs": [["Potencia del Motor", "268kW (359Hp)"], ["Potencia del taladro", "20kW (27Hp)"], ["Profundidad de perforación", "28.000 mm"], ["Peso Operacional", "15,000 kg"]], "pdf": "min-es-surface-drill-rigs.pdf"}, {"title": "Tracks Jaw Crusher Mobile Station 300-400 t/h", "desc": "Rhino® Tracks Jaw Crusher Mobile Station delivers powerful, efficient primary crushing with exceptional mobility. Built for demanding mining applications, it offers reliable performance, durability, and high productivity on any job site.", "img": "catalog-img/mineria-08.jpg", "specs": [["Capacidad de Producción", "300 – 400 t/h"], ["Peso de la trituradora", "29 tons"], ["Capacidad del Balde", "3.2 m3"], ["Altura de alimentación", "4,900 mm"], ["Potencia del Motor", "328kW (440Hp)"]], "pdf": "min-es-tracks-jaw-crusher.pdf"}, {"title": "Crawler-Type Mobile Screening Station 200-400 t/h", "desc": "Rhino® Crawler-Type Mobile Screening Station provides efficient, high-capacity material screening. Designed for demanding mining applications, it delivers reliable performance, durability, and maximum productivity on every job site.", "img": "catalog-img/mineria-09.jpg", "specs": [["Capacidad de Producción", "200 – 400 t/h"], ["Peso Operacional", "68 tons"], ["Tamaño de malla", "5 – 100 mm"], ["Altura de alimentación", "4,600 mm"], ["Potencia del Motor", "120kW (161Hp)"]], "pdf": "min-es-mobile-screening-station.pdf"}];
-        function openCatalogSpec(i) {
-            const p = CATALOG_MIN[i];
-            document.getElementById('spec-img').style.backgroundImage = "url('" + p.img + "')";
-            document.getElementById('spec-title').textContent = p.title;
-            document.getElementById('spec-desc').textContent = p.desc || '';
-            document.getElementById('spec-body').innerHTML = p.specs.map(s => '<tr><td style="padding:9px 15px;border-bottom:1px solid #eee;font-size:14px;">' + s[0] + '</td><td style="padding:9px 15px;border-bottom:1px solid #eee;font-size:14px;">' + s[1] + '</td></tr>').join('');
-            document.getElementById('modal-pdf').href = 'catalog-pdf/' + p.pdf; document.getElementById('spec-modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
         function handleQuoteSubmit(event) {
             event.preventDefault();
             const nombre = document.getElementById('lead-name').value.trim();
@@ -925,9 +1146,10 @@
         }
 
         // Cerrar popups al hacer clic fuera o con Escape
+        document.getElementById('includesPopup').addEventListener('click', e => { if (e.target.id === 'includesPopup') closeIncludesPopup(); });
         document.getElementById('quoteLeadModal').addEventListener('click', e => { if (e.target.id === 'quoteLeadModal') closeQuoteModal(); });
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closeQuoteModal(); }
+            if (e.key === 'Escape') { closeIncludesPopup(); closeQuoteModal(); }
         });
     </script>
         <script>

@@ -326,6 +326,14 @@
 .pol-updated { font-size: 13px; color: #999; margin-bottom: 35px; }
 .back-home { display: inline-block; margin-bottom: 20px; color: var(--dark-charcoal); text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
 .back-home:hover { color: var(--industrial-orange); }
+        /* Hint visual: la flecha derecha pulsa lentamente hasta que el visitante hace clic */
+        .carousel-btn.hint { animation: hintPulso 2s ease-in-out infinite; }
+        @keyframes hintPulso {
+            0%, 100% { background: #fff; color: var(--dark-charcoal); border-color: var(--dark-charcoal); box-shadow: 0 0 0 rgba(255,102,0,0); }
+            50% { background: var(--industrial-orange); color: #fff; border-color: var(--industrial-orange); box-shadow: 0 0 16px rgba(255,102,0,0.6); }
+        }
+        @media (prefers-reduced-motion: reduce) { .carousel-btn.hint { animation: none; } }
+
 </style>
     <meta property="og:url" content="https://rhinoequipos.com/politicas.html">
     <link rel="canonical" href="https://rhinoequipos.com/politicas.html">
@@ -336,8 +344,9 @@
     <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
     <nav>
         <ul id="nav-menu">
-            <li><a href="index.html#maquinaria">Construcción</a></li>
-            <li><a href="index.html?skip=1#paquetes">Planes</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="construccion.html#maquinaria">Construcción</a></li>
+            <li><a href="index.html#paquetes">Planes</a></li>
             <li><a href="mineria.html">Minería</a></li>
             <li><a href="agro.html">Agro</a></li>
             <li><a href="index.html#contacto" class="btn-cta">Solicitar Información</a></li>
@@ -461,5 +470,29 @@ if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('clic
 </style>
 <a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
+<script>
+/* Hint: pulso en la flecha derecha del carrusel al entrar en pantalla, se detiene al hacer clic */
+(function(){
+    var botones = document.querySelectorAll('.carousel-btn[data-dir="1"]');
+    if (!botones.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+            if (en.isIntersecting) {
+                if (!en.target.classList.contains('usado')) {
+                    en.target.classList.add('hint');
+                }
+                io.unobserve(en.target);
+            }
+        });
+    }, { threshold: 0.6 });
+    botones.forEach(function(b){
+        io.observe(b);
+        b.addEventListener('click', function(){
+            b.classList.remove('hint');
+            b.classList.add('usado');
+        });
+    });
+})();
+</script>
 </body>
 </html>
