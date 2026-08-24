@@ -295,6 +295,13 @@
             .li-cerrar-menu { display: block; position: absolute; top: 16px; right: 18px; }
             .li-cerrar-menu button { background: none; border: none; font-size: 28px; color: var(--dark-charcoal); cursor: pointer; padding: 10px; }
         }
+        /* Hamburguesa: mas grande y pegado al borde derecho (margen igual a subir/bajar) */
+        @media (max-width: 900px) {
+            .menu-toggle { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-size: 31px; }
+        }
+        @media (max-width: 600px) {
+            .menu-toggle { right: 16px; }
+        }
     </style>
     <meta property="og:title" content="Torres de Luz | RHINO EQUIPMENT COLOMBIA">
     <meta property="og:description" content="Catálogo técnico de Torres de Luz | RHINO EQUIPMENT COLOMBIA Rhino Equipment Colombia. Cotiza por WhatsApp.">
