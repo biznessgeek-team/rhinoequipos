@@ -333,7 +333,7 @@
         /* Paquetes: carrusel movil (igual que Inicio) */
         .paquetes-carousel .carousel-header { display: none; }
         @media (max-width: 768px) {
-            .paquetes-carousel .carousel-header { display: flex; justify-content: center; margin: 0 0 20px 20px; }
+            .paquetes-carousel .carousel-header { display: flex; justify-content: center; margin: 0 0 20px 20px; width: min(330px, calc(100vw - 70px)); transform: translateX(-40px); }
             .paquetes-carousel .grid-3 { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 60px 15px; scrollbar-width: thin; }
             .paquetes-carousel .grid-3::-webkit-scrollbar { height: 6px; }
             .paquetes-carousel .grid-3::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
@@ -1105,8 +1105,9 @@
         document.querySelectorAll('.carousel-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const track = document.getElementById(btn.dataset.target);
-                const card = track.querySelector('.card');
-                const step = (card.offsetWidth + 25) * parseInt(btn.dataset.dir);
+                const card = track.querySelector('.card') || track.children[0];
+                const gap = parseFloat(getComputedStyle(track).gap) || 25;
+                const step = (card.offsetWidth + gap) * parseInt(btn.dataset.dir);
                 track.scrollBy({ left: step, behavior: 'smooth' });
             });
         });
