@@ -307,10 +307,13 @@
             nav ul { justify-content: flex-start; padding-top: 100px; }
             nav a { font-size: 20px; }
         }
-        /* Movil: logo centrado y 15% mas grande */
+        /* Movil: logo grande, pegado al margen izquierdo (misma distancia que el hamburguesa a la derecha) */
         @media (max-width: 900px) {
-            header { justify-content: center; }
+            header { justify-content: flex-start; padding-left: 24px; }
             .logo img { height: 48px; }
+        }
+        @media (max-width: 600px) {
+            header { padding-left: 16px; }
         }
     </style>
     <meta property="og:title" content="Excavadoras | RHINO EQUIPMENT COLOMBIA">
