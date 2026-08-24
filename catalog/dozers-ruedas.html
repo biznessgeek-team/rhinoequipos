@@ -282,6 +282,13 @@
         .chip span { display: inline-block; padding: 9px 18px; border: 2px solid #ddd; border-radius: 30px; font-size: 13px; font-family: 'Inter'; color: #555; cursor: pointer; transition: 0.25s; user-select: none; }
         .chip:hover span { border-color: var(--industrial-orange); color: var(--industrial-orange); }
         .chip input:checked + span { background: var(--industrial-orange); border-color: var(--industrial-orange); color: #fff; font-weight: 600; }
+        /* Navegacion flotante por secciones */
+        #nav-flotante { position: fixed; right: 24px; bottom: 110px; z-index: 1500; display: flex; flex-direction: column; gap: 8px; }
+        #nav-flotante button { width: 46px; height: 46px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(26,26,26,0.85); color: #fff; font-size: 18px; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.25); transition: background .25s, opacity .25s; backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; }
+        #nav-flotante button:hover:not(:disabled) { background: var(--industrial-orange); }
+        #nav-flotante button:disabled { opacity: .3; cursor: default; }
+        section { scroll-margin-top: 70px; }
+        @media (max-width: 600px) { #nav-flotante { right: 16px; bottom: 84px; } #nav-flotante button { width: 42px; height: 42px; } }
     </style>
     <meta property="og:title" content="Dozers de Ruedas | RHINO EQUIPMENT COLOMBIA">
     <meta property="og:description" content="Catálogo técnico de Dozers de Ruedas | RHINO EQUIPMENT COLOMBIA Rhino Equipment Colombia. Cotiza por WhatsApp.">
@@ -512,6 +519,10 @@ if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('clic
 @keyframes waPulse { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(1.35); opacity: 0; } }
 @media (max-width: 600px) { .wa-float { width: 50px; height: 50px; bottom: 16px; right: 16px; } .wa-float i { font-size: 26px; } }
 </style>
+<div id="nav-flotante" role="navigation" aria-label="Navegación de secciones">
+    <button id="nf-subir" aria-label="Volver al inicio de la página" title="Subir al inicio"><i class="fas fa-chevron-up"></i></button>
+    <button id="nf-bajar" aria-label="Ir a la siguiente sección" title="Siguiente sección"><i class="fas fa-chevron-down"></i></button>
+</div>
 <a class="wa-float" href="https://wa.me/573145162548?text=Hola%2C%20quiero%20cotizar%20maquinaria%20Rhino%20para%20mi%20proyecto%20en%20Colombia." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp" title="Cotizar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
 <script>
@@ -527,6 +538,41 @@ if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('clic
     }, true);
     var f = document.querySelector('form[action*="formsubmit.co"]');
     if (f) f.addEventListener('submit', function(){ ev('form_submit', { pagina: location.pathname }); });
+})();
+</script>
+<script>
+/* Navegacion flotante: subir al inicio / bajar seccion por seccion */
+(function(){
+    var subir = document.getElementById('nf-subir');
+    var bajar = document.getElementById('nf-bajar');
+    if (!subir || !bajar) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var comportamiento = reduce ? 'auto' : 'smooth';
+    var secciones = Array.prototype.slice.call(document.querySelectorAll('section')).filter(function(sec){
+        return sec.offsetHeight > 80 && getComputedStyle(sec).display !== 'none';
+    });
+    function actualizar(){
+        var y = window.scrollY || document.documentElement.scrollTop;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        subir.disabled = y < 40;
+        bajar.disabled = max - y < 40;
+    }
+    subir.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: comportamiento });
+    });
+    bajar.addEventListener('click', function(){
+        var base = (window.scrollY || document.documentElement.scrollTop) + window.innerHeight * 0.35;
+        var siguiente = null;
+        for (var i = 0; i < secciones.length; i++){
+            var top = secciones[i].getBoundingClientRect().top + (window.scrollY || 0);
+            if (top > base + 10) { siguiente = secciones[i]; break; }
+        }
+        if (siguiente) { siguiente.scrollIntoView({ behavior: comportamiento, block: 'start' }); }
+        else { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: comportamiento }); }
+    });
+    window.addEventListener('scroll', actualizar, { passive: true });
+    window.addEventListener('resize', actualizar);
+    actualizar();
 })();
 </script>
 </body>
