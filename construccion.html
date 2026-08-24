@@ -330,6 +330,15 @@
             50% { background: var(--industrial-orange); color: #fff; border-color: var(--industrial-orange); box-shadow: 0 0 16px rgba(255,102,0,0.6); }
         }
         @media (prefers-reduced-motion: reduce) { .carousel-btn.hint { animation: none; } }
+        /* Paquetes: carrusel movil (igual que Inicio) */
+        .paquetes-carousel .carousel-header { display: none; }
+        @media (max-width: 768px) {
+            .paquetes-carousel .carousel-header { display: flex; justify-content: center; margin: 0 0 20px 20px; }
+            .paquetes-carousel .grid-3 { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 60px 15px; scrollbar-width: thin; }
+            .paquetes-carousel .grid-3::-webkit-scrollbar { height: 6px; }
+            .paquetes-carousel .grid-3::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
+            .paquetes-carousel .pkg-phase { flex: 0 0 min(330px, calc(100vw - 70px)); scroll-snap-align: start; }
+        }
     </style>
 
 <script type="application/ld+json">
@@ -445,7 +454,14 @@
             <div class="divider"></div>
             <p>Planes operativos por fases para la respuesta inmediata ante la emergencia. Cada configuración se adapta al tipo de entidad contratante.</p>
         </div>
-        <div class="grid-3">
+        <div class="paquetes-carousel">
+        <div class="carousel-header">
+            <div class="carousel-nav">
+                <button class="carousel-btn" data-target="track-paquetes" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" data-target="track-paquetes" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="grid-3" id="track-paquetes">
             <div class="pkg-phase">
                 <div class="phase-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
                 <div class="phase-body">
@@ -497,6 +513,7 @@
                 </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
