@@ -430,7 +430,9 @@
         /* Sectores: carrusel movil identico al de paquetes */
         .sectores-wrap .carousel-header { display: none; }
         @media (max-width: 768px) {
-            .sectores-wrap .carousel-header { display: flex; margin: 0 20px 20px; }
+            .sectores-wrap { position: relative; }
+            .sectores-wrap .carousel-header { display: flex; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); margin: 0; z-index: 10; }
+            .sectores-wrap .carousel-btn { background: rgba(255,255,255,0.9); box-shadow: 0 3px 12px rgba(0,0,0,0.35); }
             .sectores-wrap .sectores-grid { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 20px 15px; scrollbar-width: thin; max-width: none; }
             .sectores-wrap .sectores-grid::-webkit-scrollbar { height: 6px; }
             .sectores-wrap .sectores-grid::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
