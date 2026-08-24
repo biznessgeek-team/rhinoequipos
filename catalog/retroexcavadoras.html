@@ -289,6 +289,12 @@
         #nav-flotante button:disabled { opacity: .3; cursor: default; }
         section { scroll-margin-top: 70px; }
         @media (max-width: 600px) { #nav-flotante { right: 16px; bottom: 84px; } #nav-flotante button { width: 42px; height: 42px; } }
+        /* Boton cerrar (X) del menu movil */
+        .li-cerrar-menu { display: none; }
+        @media (max-width: 900px) {
+            .li-cerrar-menu { display: block; position: absolute; top: 16px; right: 18px; }
+            .li-cerrar-menu button { background: none; border: none; font-size: 28px; color: var(--dark-charcoal); cursor: pointer; padding: 10px; }
+        }
     </style>
     <meta property="og:title" content="Retroexcavadoras | RHINO EQUIPMENT COLOMBIA">
     <meta property="og:description" content="Catálogo técnico de Retroexcavadoras | RHINO EQUIPMENT COLOMBIA Rhino Equipment Colombia. Cotiza por WhatsApp.">
@@ -311,6 +317,7 @@
     <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
     <nav>
         <ul id="nav-menu">
+            <li class="li-cerrar-menu"><button id="btn-cerrar-menu" aria-label="Cerrar menú"><i class="fas fa-times"></i></button></li>
             <li><a href="../index.html">Inicio</a></li>
             <li><a href="../construccion.html#maquinaria">Maquinaria</a></li>
             <li><a href="../index.html#paquetes">Planes</a></li>
@@ -477,6 +484,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 const mobileBtn = document.getElementById('mobile-menu');
 const navMenu = document.getElementById('nav-menu');
 if (mobileBtn) mobileBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        var btnCerrar = document.getElementById('btn-cerrar-menu');
+        if (btnCerrar) btnCerrar.addEventListener('click', function(){ navMenu.classList.remove('active'); });
 if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('active')));
 </script>
         <script>
