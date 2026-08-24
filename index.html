@@ -161,7 +161,7 @@
         /* Header */
         header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Oswald'; font-size: 24px; font-weight: 700; color: var(--dark-charcoal); text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo img { height: 36px; width: auto; display: block; }
+        .logo img { height: 42px; width: auto; display: block; }
         nav ul { display: flex; gap: 30px; list-style: none; }
         nav a { color: var(--dark-charcoal); text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.3s; }
         nav a:hover { color: var(--industrial-orange); }
@@ -253,6 +253,16 @@
         .btn-vermas:hover { background: transparent; color: var(--industrial-orange); }
         .btn-cotizar { display: block; text-align: center; background: #fff; color: var(--dark-charcoal); border: 2px solid var(--dark-charcoal); padding: 12px; text-decoration: none; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-size: 14px; }
         .btn-cotizar:hover { background: var(--dark-charcoal); color: #fff; }
+
+        /* PAQUETES: en móvil las fases van en carrusel (mismo patrón y flechas que los demás) */
+        .paquetes-carousel .carousel-header { display: none; }
+        @media (max-width: 768px) {
+            .paquetes-carousel .carousel-header { display: flex; margin: 0 20px 20px; }
+            .paquetes-carousel .grid-3 { display: flex; gap: 25px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 20px 15px; scrollbar-width: thin; }
+            .paquetes-carousel .grid-3::-webkit-scrollbar { height: 6px; }
+            .paquetes-carousel .grid-3::-webkit-scrollbar-thumb { background: var(--dark-charcoal); border-radius: 3px; }
+            .paquetes-carousel .pkg-phase { flex: 0 0 min(330px, calc(100vw - 70px)); scroll-snap-align: start; }
+        }
 
         /* Popup de configuraciones por cliente */
         .includes-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 3000; overflow-y: auto; padding: 40px 15px; }
@@ -354,14 +364,41 @@
         .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.visible { opacity: 1; transform: none; }
         @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+        /* Titulo del Hero: version corta solo en movil (menos altura vertical) */
+        .h1-movil { display: none; }
         @media (max-width: 900px) {
             .sectores-grid, .steps-grid { grid-template-columns: 1fr; max-width: 420px; }
-            .hero-stats { flex-wrap: wrap; gap: 10px; padding: 0 14px 84px; }
+            /* Hero móvil: layout en columna y stats en flujo para que nunca tapen el contenido */
+            .hero { height: auto; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: stretch; padding: 34px 20px 90px; }
+            .hero-content { margin: auto 0; }
+            .h1-desktop { display: none; }
+            .h1-movil { display: block; }
+            .hero-stats { position: static; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; padding: 0; }
             .hero-stats .stat { padding: 10px 18px; min-width: 120px; }
             .hero-stats .stat b { font-size: 38px; } .hero-stats .stat b i { font-size: 20px; }
             .step .num { font-size: 64px; }
             .cta-band { flex-direction: column; text-align: center; }
         }
+        @media (max-width: 600px) {
+            .hero { padding: 26px 16px 90px; }
+            .hero-tag { margin-bottom: 16px; }
+            /* Título fluido: letras grandes que llenan el ancho disponible */
+            .hero h1 { font-size: clamp(20px, 9.2vw, 40px); line-height: 1.08; word-spacing: -1px; text-wrap: balance; margin-bottom: 16px; }
+            .hero p { margin-bottom: 24px; }
+            .hero-btns { flex-direction: column; align-items: stretch; gap: 10px; animation: heroBtnsLoop 8s ease-in-out infinite; }
+            .hero-btns .btn { padding: 13px 20px; }
+            .hero-stats .stat { flex: 1 1 calc(50% - 5px); max-width: 240px; min-width: 0; }
+        }
+        /* Móvil: botones del hero aparecen 4s / desaparecen 4s en loop infinito.
+           pointer-events y visibility en los keyframes evitan clics fantasma cuando están ocultos. */
+        @keyframes heroBtnsLoop {
+            0% { opacity: 0; transform: translateY(14px); visibility: hidden; pointer-events: none; }
+            12.5% { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
+            50% { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
+            62.5% { opacity: 0; transform: translateY(14px); visibility: hidden; pointer-events: none; }
+            100% { opacity: 0; transform: translateY(14px); visibility: hidden; pointer-events: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .hero-btns { animation: none; } }
 
         /* HOME: flechas del carrusel junto al titulo (30px a la derecha del texto) */
         .carousel-header { justify-content: flex-start; }
@@ -460,7 +497,7 @@
 
     <!-- Header -->
     <header>
-        <a href="#" class="logo"><img src="rhino-logo-mark-dark.png" alt="Rhino Equipment Colombia"> RHINO EQUIPOS</a>
+        <a href="#" class="logo"><img src="logo-rhino-equipos.png" alt="Rhino Equipos Colombia"></a>
         <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
         <nav>
             <ul id="nav-menu">
@@ -489,7 +526,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-tag">Plan de Reconstrucción Colombia</span>
-            <h1>EFICACIA Y POTENCIA PARA<br>RECONSTRUIR A COLOMBIA</h1>
+            <h1><span class="h1-desktop">EFICACIA Y POTENCIA PARA<br>RECONSTRUIR A COLOMBIA</span><span class="h1-movil">EFICACIA Y POTENCIA PARA RECONSTRUIR NUESTRO PAIS</span></h1>
             <p>Capacidad Superior, Menor Costo, Mayor Rapidez de Entrega.</p>
             <div class="hero-btns">
                 <a href="#paquetes" class="btn btn-primary">Ver Planes</a>
@@ -573,7 +610,15 @@
             <div class="divider"></div>
             <p>Planes operativos por fases para la respuesta inmediata ante la emergencia. Cada configuración se adapta al tipo de entidad contratante.</p>
         </div>
-        <div class="grid-3">
+        <div class="paquetes-carousel">
+        <div class="carousel-header">
+            <span class="carousel-title">Fases de Respuesta</span>
+            <div class="carousel-nav">
+                <button class="carousel-btn" data-target="track-paquetes" data-dir="-1" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" data-target="track-paquetes" data-dir="1" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="grid-3" id="track-paquetes">
             <div class="pkg-phase">
                 <div class="phase-img" style="background-image: url('catalog-img/excavadoras.jpg');"></div>
                 <div class="phase-body">
@@ -625,6 +670,7 @@
                 </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -1271,8 +1317,9 @@
         document.querySelectorAll('.carousel-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const track = document.getElementById(btn.dataset.target);
-                const card = track.querySelector('.card');
-                const step = (card.offsetWidth + 25) * parseInt(btn.dataset.dir);
+                const card = track.querySelector('.card') || track.children[0];
+                const gap = parseFloat(getComputedStyle(track).gap) || 25;
+                const step = (card.offsetWidth + gap) * parseInt(btn.dataset.dir);
                 track.scrollBy({ left: step, behavior: 'smooth' });
             });
         });
